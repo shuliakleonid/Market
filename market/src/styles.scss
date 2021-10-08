@@ -1,1 +1,52 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --others-grey6: rgb(242, 242, 242);
+  --secondary-grey3: rgb(227, 227, 227);
+  --white: rgb(255, 255, 255);
+  --light-cyan: rgb(224, 255, 255);
+  --secondary-grey2: rgb(84, 87, 90);
+  --secondary-grey1: rgb(65, 65, 65);
+  --secondary-grey: rgb(161, 157, 165);
+
+  --green: rgb(56, 118, 46);
+  --black: rgba(0, 0, 0);
+  --primary-blue: #0277bd;
+
+  --blue: rgb(170, 213, 228);
+
+  --error: rgb(174, 19, 15);
+
+  --border-radius-big: 15px;
+  --border-radius-small: 10px;
+  --border-radius-medium: 7px;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+.mat-snack-bar-container.success {
+  color: var(--black);
+  background-color: var(--secondary-grey3);
+  border: 1px solid var(--primary-blue);
+}
+
+.mat-snack-bar-container.error {
+  color: var(--black);
+  background-color: var(--secondary-grey3);
+  border: 1px solid var(--error);
+}
+
+.mat-simple-snackbar-action {
+  color: var(--primary-blue);
+}
+
+.mat-step-optional,
+.mat-step-sub-label-error {
+  font-size: 0.6rem !important;
+}

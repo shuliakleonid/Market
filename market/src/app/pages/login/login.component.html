@@ -1,0 +1,40 @@
+<div class="login_page" >
+  <mat-card class="login_card" >
+    <form [formGroup]="loginReactiveForm" (submit)="onSubmit()">
+      <mat-form-field class="form-field">
+        <mat-label for="userLogin">Login:</mat-label>
+        <input
+          matInput
+          type="email"
+          id="userLogin"
+          formControlName="userLogin"
+          maxlength="40"
+        />
+      </mat-form-field>
+      <mat-error *ngIf="isControlInvalid('userLogin')">
+        Please enter a valid email address
+      </mat-error>
+      <mat-form-field class="form-field">
+        <mat-label for="userPassword">Password:</mat-label>
+        <input
+          matInput
+          type="password"
+          id="userPassword"
+          formControlName="userPassword"
+          maxlength="30"
+        />
+      </mat-form-field>
+      <div class="error" *ngIf="isControlInvalid('userPassword')" style="color: red">
+        Password is to short
+      </div>
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="loginReactiveForm.invalid || submitted"
+      >
+        Sign In
+      </button>
+    </form>
+  </mat-card>
+</div>
