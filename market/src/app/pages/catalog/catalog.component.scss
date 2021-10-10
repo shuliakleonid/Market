@@ -1,0 +1,20 @@
+.container {
+  display: grid;
+  grid-template-areas:
+    'header header'
+    'filter main'
+    'footer footer';
+  grid-template-columns: 150px 1fr;
+}
+.header{
+  grid-area: header;
+}
+.filter{
+  grid-area: filter;
+}
+.main{
+  grid-area: main;
+}
+.footer{
+  grid-area: footer;
+}

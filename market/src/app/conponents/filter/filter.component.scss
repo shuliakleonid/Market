@@ -1,0 +1,11 @@
+.filter{
+  &__container{
+    display: flex;
+    flex-direction: column;
+    background-color: blanchedalmond;
+  }
+  &__item{
+  margin: 1rem;
+}
+
+}

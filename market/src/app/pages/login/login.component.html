@@ -11,9 +11,6 @@
           maxlength="40"
         />
       </mat-form-field>
-      <mat-error *ngIf="isControlInvalid('userLogin')">
-        Please enter a valid email address
-      </mat-error>
       <mat-form-field class="form-field">
         <mat-label for="userPassword">Password:</mat-label>
         <input
@@ -24,9 +21,6 @@
           maxlength="30"
         />
       </mat-form-field>
-      <div class="error" *ngIf="isControlInvalid('userPassword')" style="color: red">
-        Password is to short
-      </div>
       <button
         mat-raised-button
         color="primary"
