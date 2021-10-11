@@ -16,6 +16,9 @@ import { CatalogItemComponent } from './conponents/catalog-item/catalog-item.com
 import { FooterComponent } from './conponents/footer/footer.component';
 import { MainComponent } from './conponents/main/main.component';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
+import {MatTableModule} from '@angular/material/table';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -26,9 +29,11 @@ import {MatGridListModule} from '@angular/material/grid-list';
     CatalogItemComponent,
     FooterComponent,
     MainComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     MatCardModule,
     MatFormFieldModule,
@@ -38,6 +43,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatToolbarModule,
     MatIconModule,
     MatGridListModule,
+    MatTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
