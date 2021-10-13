@@ -1,0 +1,26 @@
+.sing-up{
+display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  &__container{
+    max-width: 80%;
+    background-color: whitesmoke;
+  }
+
+  &__fields{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1rem;
+  }
+  &__redirect{
+    text-align: center;
+  }
+  &__button{
+   margin: 1rem auto;
+    text-align: center;
+  }
+  a:visited{
+    color:var(--black);
+  }
+}
