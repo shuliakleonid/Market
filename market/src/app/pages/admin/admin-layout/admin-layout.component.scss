@@ -1,0 +1,15 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  background-color: aqua;
+  &__list {
+    display: flex;
+    list-style-type: none;
+  }
+  &__item{
+    margin: 1rem;
+  }
+  a {
+    text-decoration: none;
+  }
+}
