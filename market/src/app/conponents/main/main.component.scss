@@ -1,7 +1,9 @@
-.catalog__wrapper{
-  margin: 2rem 2rem;
-  display: flex;
-  flex-wrap: wrap;
-  column-gap:3rem;
-  row-gap:3rem;
+.catalog{
+  &__wrapper {
+    margin: 2rem 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 3rem;
+    row-gap: 3rem;
+  }
 }
