@@ -1,3 +1,6 @@
-.card__wrapper {
+.card{
   max-width: 10rem;
+  &__img{
+    border-radius: 50px;
+  }
 }
