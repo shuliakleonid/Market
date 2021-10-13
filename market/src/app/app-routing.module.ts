@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {Page404Component} from './pages/page404/page404.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'catalog',pathMatch: 'full'},
@@ -19,7 +18,10 @@ const routes: Routes = [
   {path:'sing-up',
     loadChildren: () => import('../app/pages/sing-up/sing-up.module').then((m) => m.SingUpModule),
   },
-  {path: '**', component: Page404Component }
+  {path:'profile',
+    loadChildren: () => import('../app/pages/user-profile/user-profile.module').then((m) => m.UserProfileModule),
+  },
+  {path: '**', loadChildren: () => import('../app/pages/page404/page404.module').then((m) => m.Page404Module), }
 ];
 
 @NgModule({
