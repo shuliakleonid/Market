@@ -1,0 +1,23 @@
+table {
+  width: 100%;
+}
+.mat-column-position {
+  width: 2rem;
+  border-right: 1px solid black;
+  padding-right: 1.7rem;
+  text-align: center;
+}
+.mat-column-name {
+  padding-left: 1rem;
+  font-size: 1.5rem;
+}
+
+.mat-column-price {
+  font-style: italic;
+}
+
+.mat-column-quantity {
+  width: 2rem;
+  text-align: center;
+  font-weight: bold;
+}

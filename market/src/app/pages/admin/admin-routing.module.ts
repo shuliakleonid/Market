@@ -7,7 +7,7 @@ import {EditComponent} from './edit/edit.component';
 import {OrdersComponent} from './orders/orders.component';
 
 const routes: Routes = [
-  { path: '', component: AdminLayoutComponent, children:[
+  { path: '', component: AdminLayoutComponent ,children:[
       { path: 'dashboard', component: DashboardComponent },
       { path: 'add', component: AddComponent },
       { path: 'edit', component: EditComponent },

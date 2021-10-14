@@ -21,6 +21,9 @@ const routes: Routes = [
   {path:'profile',
     loadChildren: () => import('../app/pages/user-profile/user-profile.module').then((m) => m.UserProfileModule),
   },
+  {path:'cart',
+    loadChildren: () => import('../app/pages/cart/cart.module').then((m) => m.CartModule),
+  },
   {path: '**', loadChildren: () => import('../app/pages/page404/page404.module').then((m) => m.Page404Module), }
 ];
 
