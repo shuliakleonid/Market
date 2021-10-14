@@ -1,48 +1,47 @@
 <section class="profile">
   <mat-card class="profile__container">
-  <h1>Profile</h1>
-<div class="profile__data">
-  <div class="profile__img"></div>
-<div class="profile__person">
-  <span>First name: Ivan</span>
-  <span>Second name: Ivanov</span>
-  <span>Email: ivan@ivan.com</span>
-  <span>Phone: +375293334455</span>
-  <span>Birth date: 01.01.2001</span>
-</div>
+    <h1>Profile</h1>
+    <div class="profile__data">
+      <div class="profile__img"></div>
+      <div class="profile__person">
+        <span>First name: Ivan</span>
+        <span>Second name: Ivanov</span>
+        <span>Email: ivan@ivan.com</span>
+        <span>Phone: +375293334455</span>
+        <span>Birth date: 01.01.2001</span>
+      </div>
+    </div>
+    <div class="profile__cards">
+      <h2>Bank Cart</h2>
+      <div class="profile__card"></div>
+    </div>
+    <div>
+      <h2>Orders</h2>
+      <table mat-table [dataSource]="dataSource" class="profile__table">
+        <ng-container matColumnDef="position" class="profile__table-position">
+          <th mat-header-cell *matHeaderCellDef>No.</th>
+          <td mat-cell *matCellDef="let element">{{ element.position }}</td>
+        </ng-container>
 
-</div>
-  <div class="profile__cards" >
-    <h2>Bank Cart</h2>
-    <div class="profile__card"></div>
-  </div>
-  <div>
-    <h2>Orders</h2>
-    <table mat-table [dataSource]="dataSource" class="profile__table">
-      <ng-container matColumnDef="position" class="profile__table-position">
-        <th mat-header-cell *matHeaderCellDef> No. </th>
-        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-      </ng-container>
+        <ng-container matColumnDef="name" class="profile__table-name"
+          >>
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+        </ng-container>
 
-      <ng-container matColumnDef="name" class="profile__table-name">>
-        <th mat-header-cell *matHeaderCellDef> Name </th>
-        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-      </ng-container>
+        <ng-container matColumnDef="price" class="profile__table-price">
+          <th mat-header-cell *matHeaderCellDef>Price</th>
+          <td mat-cell *matCellDef="let element">{{ element.price }}</td>
+        </ng-container>
 
-      <ng-container matColumnDef="price"  class="profile__table-price">
-        <th mat-header-cell *matHeaderCellDef> Price </th>
-        <td mat-cell *matCellDef="let element"> {{element.price}} </td>
-      </ng-container>
+        <ng-container matColumnDef="quantity" class="profile__table-quantity">
+          <th mat-header-cell *matHeaderCellDef>Quantity</th>
+          <td mat-cell *matCellDef="let element">{{ element.quantity }}</td>
+        </ng-container>
 
-      <ng-container matColumnDef="quantity" class="profile__table-quantity">
-        <th mat-header-cell *matHeaderCellDef> Quantity </th>
-        <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-
-  </div>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </div>
   </mat-card>
 </section>

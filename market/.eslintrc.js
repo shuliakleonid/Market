@@ -1,91 +1,50 @@
 module.exports = {
+  root: true,
   env: {
     es6: true,
     browser: true,
     node: true,
   },
-  extends: [
-    'plugin:@angular-eslint/recommended',
-  ],
-  rules: {
-    '@angular-eslint/directive-selector': [
-      'error',
-      { type: 'attribute', prefix: 'app', style: 'camelCase' },
-    ],
-    '@angular-eslint/component-selector': [
-      'error',
-      { type: 'element', prefix: 'app', style: 'kebab-case' },
-    ],
-  },
   overrides: [
     {
-      files: ['*.component.ts'],
-      parser: '@typescript-eslint/parser',
+      files: ["*.ts"],
       parserOptions: {
-        ecmaVersion: 2020,
-        sourceType: 'module',
+        project: [
+          "tsconfig.*?.json",
+          './tsconfig.json'
+        ],
+        createDefaultProgram: true
       },
-      plugins: ['@angular-eslint/template'],
-      processor: '@angular-eslint/template/extract-inline-html',
+      plugins: ['@angular-eslint/template','import'],
+      extends: [
+        "plugin:@angular-eslint/recommended",
+        "airbnb-typescript/base"
+      ]
     },
     {
-      files: ['*.ts'],
+      files: ["*.component.html"],
       extends: [
-        'airbnb-typescript/base',
-        'prettier/@typescript-eslint',
-        'plugin:prettier/recommended',
+        "plugin:@angular-eslint/template/recommended",
+        'plugin:prettier/recommended'
       ],
-      parser: '@typescript-eslint/parser',
-      parserOptions: {
-        ecmaVersion: 2020,
-        sourceType: 'module',
-      },
       rules: {
-        "prefer-destructuring": ["error", {
-          "array": false,
-          "object": true
-        }, {
-          "enforceForRenamedProperties": false
-        }],
-        'no-return-assign': 'off',
+        "max-len": ["error", { "code": 140 }],
+        '@typescript-eslint/no-unused-vars': 'off',
         'import/no-unresolved': 'off',
         'import/prefer-default-export': 'off',
         'class-methods-use-this': 'off',
         'lines-between-class-members': 'off',
-        '@typescript-eslint/no-unused-vars': 'off',
-        '@typescript-eslint/unbound-method': [
-          'error',
-          {
-            ignoreStatic: true,
-          },
-        ],
-      },
-    },
-    {
-      files: ['*.spec.ts'],
-      rules: {
-        '@typescript-eslint/no-unused-vars': 'off',
-      },
-    },
-    {
-      files: ['src/**/*.spec.ts', 'src/**/*.d.ts'],
-      parserOptions: {
-        project: './tsconfig.spec.json',
-      },
-      extends: ['plugin:jasmine/recommended'],
-      plugins: ['jasmine'],
-      env: { jasmine: true },
-    },
-    {
-      files: ['e2e/**/*.e2e-spec.ts', 'e2e/**/*.po.ts'],
-      parserOptions: {
-        project: './e2e/tsconfig.json',
-      },
-      extends: ['plugin:protractor/recommended'],
-      plugins: ['protractor'],
-      rules: {
-        "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
+        // '@typescript-eslint/unbound-method': [
+        //   'error',
+        //   {
+        //     ignoreStatic: true,
+        //   }
+        // ]
       }
     },
-  ],
-};
+    {
+      files: ["*.component.ts"],
+      extends: ["plugin:@angular-eslint/template/process-inline-templates"]
+    }
+  ]
+}
