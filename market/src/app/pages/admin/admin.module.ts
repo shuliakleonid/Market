@@ -7,6 +7,7 @@ import {AddComponent} from './add/add.component';
 import {AdminLayoutComponent} from './admin-layout/admin-layout.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {AngularMaterialCommonModule} from '../../angular-material-common.module';
+import {OrderTableComponent} from '../../conponents/order-table/order-table.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import {AngularMaterialCommonModule} from '../../angular-material-common.module'
     OrdersComponent,
     AddComponent,
     AdminLayoutComponent,
-    DashboardComponent
+    DashboardComponent,
+    OrderTableComponent
   ],
   imports: [
     CommonModule,

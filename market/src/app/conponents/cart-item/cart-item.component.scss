@@ -1,0 +1,19 @@
+.order {
+  display: flex;
+  margin: 1rem auto;
+
+  img {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__button {
+    border-radius: 50%;
+  }
+}
