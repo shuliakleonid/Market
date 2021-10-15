@@ -1,16 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import {MatTableDataSource} from '@angular/material/table';
-import {ELEMENT_DATA} from '../../../constants/mock-data';
+import { Component } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { ELEMENT_DATA } from '../../../constants/mock-data';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent implements OnInit {
-  ngOnInit(): void {
-  }
-  displayedColumns: string[] = ['position', 'name', 'price', 'date of creation','open','delete'];
+export class DashboardComponent {
+  displayedColumns: string[] = ['position', 'name', 'price', 'date of creation', 'open', 'delete'];
+
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
   applyFilter(event: Event) {

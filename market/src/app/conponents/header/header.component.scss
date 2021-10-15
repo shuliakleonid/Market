@@ -1,15 +1,13 @@
-.header{
+.header {
   display: flex;
   justify-content: center;
   &__logo {
     flex-grow: 1;
   }
-  &__user{
-
+  &__user {
     margin-right: 1rem;
-  span {
-    margin: 1rem;
-  }
+    span {
+      margin: 1rem;
+    }
   }
 }
-

@@ -1,43 +1,43 @@
-.profile{
+.profile {
   display: flex;
   justify-content: center;
   align-items: center;
-  h1{
+  h1 {
     text-align: center;
     font-size: 4rem;
   }
-  &__container{
+  &__container {
     max-width: 90%;
-    margin:1rem auto;
+    margin: 1rem auto;
   }
 
-  &__data{
+  &__data {
     display: flex;
     column-gap: 1rem;
   }
-  &__img{
+  &__img {
     width: 10rem;
     height: 10rem;
-    background-image: url("https://picsum.photos/id/1025/200/300");
+    background-image: url('https://picsum.photos/id/1025/200/300');
     background-repeat: no-repeat;
     background-position: inherit;
-    border-radius:50%;
+    border-radius: 50%;
   }
 
-  &__person{
+  &__person {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
 
-  &__card{
+  &__card {
     width: 36rem;
     height: 23rem;
     background-repeat: no-repeat;
     background-position: inherit;
-    background-image: url("https://gc.onliner.by/images/auth/bg-clover-secondary.png");
+    background-image: url('https://gc.onliner.by/images/auth/bg-clover-secondary.png');
   }
-  &__table{
+  &__table {
     width: 100%;
   }
 }

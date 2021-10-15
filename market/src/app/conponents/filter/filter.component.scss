@@ -1,15 +1,13 @@
-.filter{
-  &__container{
+.filter {
+  &__container {
     display: flex;
     flex-direction: column;
     background-color: blanchedalmond;
-
   }
-  &__search{
+  &__search {
     margin: 1rem;
   }
-  &__item{
-  margin: 1rem;
-}
-
+  &__item {
+    margin: 1rem;
+  }
 }
