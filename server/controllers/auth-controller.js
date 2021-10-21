@@ -22,11 +22,21 @@ class AuthController {
           const hashPassword = await bcrypt.hashSync(password, 6);
           const sql = `CALL UserAddOrEdit('0','${user_name}','${first_name}','${last_name}','${email}','${role}','${hashPassword}');`;
 
-          await db.query(sql, (err, rows) => {
-            rows.forEach((element) => {
-              if (element.constructor === Array)
-                return res.json("Inserted user id : " + element[0].iduser);
-            });
+          await db.query(sql, async (err, rows) => {
+            for (const element of rows) {
+              if (element.constructor === Array) {
+                const token = uuidv4();
+                const expireTimeMS = Date.now() + 1000 * 60 * 60;
+                const sql = `CALL AddAuthToken(${element[0].iduser},'${token}',${expireTimeMS});`;
+                await db.query(sql, (err, rows) => {
+                  console.log(rows[0][0].token)
+                  return res.json({
+                    token: rows[0][0].token,
+                    message: "Inserted user id : " + element[0].iduser,
+                  });
+                });
+              }
+            }
           });
         }
       );
@@ -38,6 +48,10 @@ class AuthController {
 
   async login(req, res) {
     try {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(400).json({ message: "Registration error", errors });
+      }
       const { email, password } = req.body;
       await db.query(
         "SELECT email,password,iduser FROM user WHERE email = ?;",
@@ -45,7 +59,7 @@ class AuthController {
         async (err, rows) => {
           const validPassword = bcrypt.compareSync(password, rows[0].password);
           const token = uuidv4();
-          const expireTimeMS = Date.now() + 1000 * 60 * 60;// one hour
+          const expireTimeMS = Date.now() + 1000 * 60 * 60;
           if (!rows.length > 0) {
             return res
               .status(400)
@@ -55,8 +69,8 @@ class AuthController {
             return res.status(400).json({ message: "Enter correct password" });
           }
           const sql = `CALL AddAuthToken(${rows[0].iduser},'${token}',${expireTimeMS});`;
-          await db.query(sql, [token,expireTimeMS],(err, rows) => {
-            return res.json(rows[0])
+          await db.query(sql, (err, rows) => {
+            return res.json(rows[0]);
           });
         }
       );
@@ -64,12 +78,6 @@ class AuthController {
       console.log(e);
       res.status(400).json({ message: "Login error" });
     }
-  }
-
-  async getUsers(req, res) {
-    try {
-      res.json("Server works");
-    } catch (e) {}
   }
 }
 
