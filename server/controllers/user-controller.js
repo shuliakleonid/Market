@@ -1,4 +1,4 @@
-import db from "../db.js";
+import db from "../database/db.js";
 
 class UserController {
   async createUser(req, res) {
@@ -8,7 +8,7 @@ class UserController {
       const sql = `CALL UserAddOrEdit('0','${user_name}','${first_name}','${last_name}','${email}','${role}','${password}');`;
       await db.query(
           sql,
-          (err, rows, fields) => {
+          (err, rows) => {
             rows.forEach((element) => {
               console.log(element, "ELEMENT");
               if (element.constructor === Array)
@@ -18,25 +18,28 @@ class UserController {
       );
     } catch (err) {
       console.log(err);
+      res.status(500).json(err);
     }
   }
 
   async getUser(req,res) {
     try{
-    await db.query('SELECT * FROM USER WHERE iduser = ?', [req.params.id], (err, rows, fields) => {
+    await db.query('SELECT * FROM USER WHERE iduser = ?', [req.params.id], (err, rows) => {
       res.json(rows);
   })
     } catch (err) {
       console.log(err);
+      res.status(500).json(err);
     }
   }
   async getAllUsers(req,res) {
     try{
-      db.query('SELECT * FROM USER', (err, rows, fields) => {
+      db.query('SELECT * FROM USER', (err, rows) => {
       res.json(rows);
   })
     } catch (err) {
         console.log(err);
+      res.status(500).json(err);
     }
   }
   async updateUser(req,res) {
@@ -44,20 +47,22 @@ class UserController {
       const {iduser, user_name, first_name, last_name, email, role, password} =
           req.body;
   const sql = `CALL UserAddOrEdit('${iduser}','${user_name}','${first_name}','${last_name}','${email}','${role}','${password}');`;
-  db.query(sql, (err, rows, fields) => {
+  db.query(sql, () => {
       res.json('Updated successfully');
   })
     } catch (err) {
       console.log(err);
+      res.status(500).json(err);
     }
   }
   async deleteUser(req,res) {
     try{
-      db.query('DELETE FROM USER WHERE iduser = ?', [req.params.id], (err, rows, fields) => {
+      db.query('DELETE FROM USER WHERE iduser = ?', [req.params.id], () => {
       res.json('Deleted successfully.');
   })
     } catch (err) {
       console.log(err);
+      res.status(500).json(err);
     }
   }
 }
