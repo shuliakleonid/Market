@@ -1,6 +1,7 @@
 import db from "../database/db.js";
 import bcrypt from "bcryptjs";
 import { validationResult } from "express-validator";
+import { v4 as uuidv4 } from "uuid";
 
 class AuthController {
   async registration(req, res) {
@@ -37,23 +38,28 @@ class AuthController {
 
   async login(req, res) {
     try {
-      const {email, password} = req.body;
-      await db.query('SELECT email,password FROM user WHERE email = ?;',[email],(err,rows)=>{
-        console.log(rows,"ROWS")
-        if(!rows.length > 0){
-          return res.status(400).json({message: `User with email:${email} don't exist`})
+      const { email, password } = req.body;
+      await db.query(
+        "SELECT email,password,iduser FROM user WHERE email = ?;",
+        [email],
+        async (err, rows) => {
+          const validPassword = bcrypt.compareSync(password, rows[0].password);
+          const token = uuidv4();
+          const expireTimeMS = Date.now() + 1000 * 60 * 60;// one hour
+          if (!rows.length > 0) {
+            return res
+              .status(400)
+              .json({ message: `User with email:${email} don't exist` });
+          }
+          if (!validPassword) {
+            return res.status(400).json({ message: "Enter correct password" });
+          }
+          const sql = `CALL AddAuthToken(${rows[0].iduser},'${token}',${expireTimeMS});`;
+          await db.query(sql, [token,expireTimeMS],(err, rows) => {
+            return res.json(rows[0])
+          });
         }
-        const validPassword = bcrypt.compareSync(password,rows[0].password);
-        if(!validPassword){
-          return res.status(400).json({message:'Enter correct password'})
-        }
-        // Todo I must understand what use string or JWT
-        return res.json({message:'Welcome!'});
-
-      })
-
-
-
+      );
     } catch (e) {
       console.log(e);
       res.status(400).json({ message: "Login error" });
