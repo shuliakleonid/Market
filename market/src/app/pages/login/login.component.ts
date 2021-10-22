@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthStoreService } from '../../services/store/auth-store.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
 
   submitted = false;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private readonly authStoreService: AuthStoreService) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -25,6 +26,10 @@ export class LoginComponent implements OnInit {
       Object.keys(controls).forEach((controlName) => controls[controlName].markAsTouched());
     }
     this.submitted = false;
+    this.authStoreService.singIn({
+      email: this.loginReactiveForm.value.userLogin,
+      password: this.loginReactiveForm.value.userPassword,
+    });
   }
 
   isControlInvalid(controlName: string): boolean {
