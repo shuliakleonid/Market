@@ -24,8 +24,8 @@ class UserController {
 
   async getUser(req,res) {
     try{
-    await db.query('SELECT * FROM USER WHERE iduser = ?', [req.params.id], (err, rows) => {
-      res.json(rows);
+    await db.query('SELECT email,first_name,last_name FROM user WHERE token = ?', [req.params.id], (err, rows) => {
+      return res.json(rows[0]);
   })
     } catch (err) {
       console.log(err);
