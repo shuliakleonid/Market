@@ -10,8 +10,7 @@ class AuthController {
       if (!errors.isEmpty()) {
         return res.status(400).json({ message: "Registration error", errors });
       }
-      const { user_name, first_name, last_name, email, role, password } =
-        req.body;
+      const { first_name, last_name, email, password } = req.body;
       await db.query(
         "SELECT email FROM user WHERE email = ?",
         [email],
@@ -20,24 +19,15 @@ class AuthController {
             return res.status(400).json({ message: "Email is already exist" });
           }
           const hashPassword = await bcrypt.hashSync(password, 6);
-          const sql = `CALL UserAddOrEdit('0','${user_name}','${first_name}','${last_name}','${email}','${role}','${hashPassword}');`;
-
-          await db.query(sql, async (err, rows) => {
-            for (const element of rows) {
-              if (element.constructor === Array) {
-                const token = uuidv4();
-                const expireTimeMS = Date.now() + 1000 * 60 * 60;
-                const sql = `CALL AddAuthToken(${element[0].iduser},'${token}',${expireTimeMS});`;
-                await db.query(sql, (err, rows) => {
-                  console.log(rows[0][0].token)
-                  return res.json({
-                    token: rows[0][0].token,
-                    message: "Inserted user id : " + element[0].iduser,
-                  });
-                });
-              }
+          const sql =
+            "INSERT INTO user (email,password,first_name,last_name) VALUES (?,?,?,?);";
+          await db.query(
+            sql,
+            [email, hashPassword, first_name, last_name],
+            async (err, rows) => {
+              return res.json({ message: "User created" });
             }
-          });
+          );
         }
       );
     } catch (e) {
@@ -54,24 +44,38 @@ class AuthController {
       }
       const { email, password } = req.body;
       await db.query(
-        "SELECT email,password,iduser FROM user WHERE email = ?;",
+        "SELECT email,password,id FROM user WHERE email = ?;",
         [email],
         async (err, rows) => {
-          const validPassword = bcrypt.compareSync(password, rows[0].password);
-          const token = uuidv4();
-          const expireTimeMS = Date.now() + 1000 * 60 * 60;
           if (!rows.length > 0) {
             return res
               .status(400)
               .json({ message: `User with email:${email} don't exist` });
           }
+          const validPassword = bcrypt.compareSync(password, rows[0].password);
+
           if (!validPassword) {
             return res.status(400).json({ message: "Enter correct password" });
           }
-          const sql = `CALL AddAuthToken(${rows[0].iduser},'${token}',${expireTimeMS});`;
-          await db.query(sql, (err, rows) => {
-            return res.json(rows[0]);
-          });
+          const token = uuidv4();
+          const expireTimeMS = Date.now() + 1000 * 60 * 60;
+          const expireDate = new Date(expireTimeMS).toISOString().split(".")[0]; // format YYYY-MM-DDTHH:MM:SS.
+          const sql = `UPDATE user SET token = ?, expiration_time = ?  WHERE id = ?;`;
+
+          await db.query(
+            sql,
+            [token, expireDate, rows[0].id, rows[0].id],
+            async (err, row) => {
+
+              await db.query(
+                "SELECT token FROM user WHERE id = ?",
+                [rows[0].id],
+                (err, result) => {
+                  return res.json(result[0]);
+                }
+              );
+            }
+          );
         }
       );
     } catch (e) {
