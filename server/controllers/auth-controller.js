@@ -10,7 +10,8 @@ class AuthController {
       if (!errors.isEmpty()) {
         return res.status(400).json({ message: "Registration error", errors });
       }
-      const { first_name, last_name, email, password } = req.body;
+      const { first_name, last_name, email, password, phone, birth_date } =
+        req.body;
       await db.query(
         "SELECT email FROM user WHERE email = ?",
         [email],
@@ -20,10 +21,10 @@ class AuthController {
           }
           const hashPassword = await bcrypt.hashSync(password, 6);
           const sql =
-            "INSERT INTO user (email,password,first_name,last_name) VALUES (?,?,?,?);";
+            "INSERT INTO user (email,password,first_name,last_name,phone,birth_date) VALUES (?,?,?,?,?,?);";
           await db.query(
             sql,
-            [email, hashPassword, first_name, last_name],
+            [email, hashPassword, first_name, last_name, phone, birth_date],
             async (err, rows) => {
               return res.json({ message: "User created" });
             }
@@ -66,7 +67,6 @@ class AuthController {
             sql,
             [token, expireDate, rows[0].id, rows[0].id],
             async (err, row) => {
-
               await db.query(
                 "SELECT token FROM user WHERE id = ?",
                 [rows[0].id],

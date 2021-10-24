@@ -1,31 +1,32 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { Route } from './constants/route-constant';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'catalog', pathMatch: 'full' },
+  { path: '', redirectTo: Route.catalog, pathMatch: 'full' },
   {
-    path: 'login',
+    path: Route.login,
     loadChildren: () => import('../app/pages/login/login.module').then((m) => m.LoginModule),
   },
   {
-    path: 'catalog',
+    path: Route.catalog,
     loadChildren: () => import('../app/pages/catalog/catalog.module').then((m) => m.CatalogModule),
   },
   {
-    path: 'admin',
+    path: Route.admin,
     loadChildren: () => import('../app/pages/admin/admin.module').then((m) => m.AdminModule),
   },
   {
-    path: 'sing-up',
+    path: Route.singUp,
     loadChildren: () => import('../app/pages/sing-up/sing-up.module').then((m) => m.SingUpModule),
   },
   {
-    path: 'profile',
+    path: Route.profile,
     loadChildren: () =>
       import('../app/pages/user-profile/user-profile.module').then((m) => m.UserProfileModule),
   },
   {
-    path: 'cart',
+    path: Route.cart,
     loadChildren: () => import('../app/pages/cart/cart.module').then((m) => m.CartModule),
   },
   {
