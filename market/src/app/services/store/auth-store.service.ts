@@ -23,6 +23,7 @@ export class AuthStoreService {
     this.authHttpService.signIn(signInModel).subscribe({
       next: (token) => {
         this.getUser(token);
+        localStorage.setItem('token', token.token);
       },
     });
   }
