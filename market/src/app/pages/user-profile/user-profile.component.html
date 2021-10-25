@@ -4,11 +4,13 @@
     <div class="profile__data">
       <div class="profile__img"></div>
       <div class="profile__person">
-        <span>First name: Ivan</span>
-        <span>Second name: Ivanov</span>
-        <span>Email: ivan@ivan.com</span>
-        <span>Phone: +375293334455</span>
-        <span>Birth date: 01.01.2001</span>
+        <ng-container *ngIf="{ user: user$ | async } as $">
+          <span>First name: {{ $.user?.first_name }} </span>
+          <span>Second name: {{ $.user?.last_name }} </span>
+          <span>Email: {{ $.user?.email }} </span>
+          <span>Phone: +375293334455</span>
+          <span>Birth date: 01.01.2001</span>
+        </ng-container>
       </div>
     </div>
     <div class="profile__cards">

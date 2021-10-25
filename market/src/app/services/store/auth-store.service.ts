@@ -1,27 +1,46 @@
 import { Injectable } from '@angular/core';
 import { AuthHttpService } from '../auth-http.service';
-import { SignIn, Token } from '../../interfaces/user.interfaces';
-import { Subject } from 'rxjs';
+import { SignIn, SingUp, Token, User } from '../../interfaces/user.interfaces';
+import { BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
+import { Route } from '../../constants/route-constant';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthStoreService {
+  private readonly userSubject$ = new BehaviorSubject<User | null>(null);
 
-  private readonly tokenSubject$ = new Subject<Token>();
+  readonly activeUser$ = this.userSubject$.asObservable();
 
-  constructor(private readonly authHttpService: AuthHttpService) { }
+  constructor(private readonly authHttpService: AuthHttpService, private readonly router: Router) {}
 
-  private set token(token: Token) {
-    this.tokenSubject$.next(token);
+  private set user(user: User) {
+    this.userSubject$.next(user);
   }
 
-  singIn(signInModel: SignIn):void {
+  singIn(signInModel: SignIn): void {
     this.authHttpService.signIn(signInModel).subscribe({
-      next:(token)=>{
-        this.token = { ...token };
+      next: (token) => {
+        this.getUser(token);
       },
     });
   }
 
+  singUp(singUpModel: SingUp): void {
+    this.authHttpService.singUp(singUpModel).subscribe();
+    this.router.navigate([Route.login]);
+  }
+
+  getUser(token: Token) {
+    this.authHttpService.getUser(token).subscribe({
+      next: (user) => {
+        console.log(user);
+        this.user = { ...user };
+        if (user) {
+          this.router.navigate([Route.profile]);
+        }
+      },
+    });
+  }
 }

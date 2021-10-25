@@ -15,6 +15,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private readonly authStoreService: AuthStoreService) {}
 
+  user$ = this.authStoreService.activeUser$;
+
   ngOnInit(): void {
     this.initForm();
   }
@@ -22,7 +24,6 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     const { controls } = this.loginReactiveForm;
     if (this.loginReactiveForm.invalid) {
-      this.submitted = true;
       Object.keys(controls).forEach((controlName) => controls[controlName].markAsTouched());
     }
     this.submitted = false;
