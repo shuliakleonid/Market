@@ -59,8 +59,9 @@ class AuthController {
             return res.status(400).json({ message: "Enter correct password" });
           }
           const token = uuidv4();
-          const expireTimeMS = Date.now() + 1000 * 60 * 60;
-          const expireDate = new Date(expireTimeMS).toISOString().split(".")[0]; // format YYYY-MM-DDTHH:MM:SS.
+          const timeZone = 3600000 * 3;
+          const expireTimeMS = Date.now() + (1000 * 60 * 60 + timeZone);
+          const expireDate = new Date(expireTimeMS).toISOString().split(".")[0];// format YYYY-MM-DDTHH:MM:SS.
           const sql = `UPDATE user SET token = ?, expiration_time = ?  WHERE id = ?;`;
 
           await db.query(
@@ -81,6 +82,20 @@ class AuthController {
     } catch (e) {
       console.log(e);
       res.status(400).json({ message: "Login error" });
+    }
+  }
+
+  getUser(token, callback) {
+    try {
+      const sql = "SELECT expiration_time FROM user WHERE token = ?;";
+      db.query(sql, [token], (err, rows) => {
+        if (rows.length > 0) {
+          const tokenIsExpired = Date.parse(rows[0].expiration_time) > Date.now();
+          callback(null, tokenIsExpired);
+        }
+      });
+    } catch (e) {
+      callback(e, null);
     }
   }
 }
