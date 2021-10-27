@@ -4,6 +4,7 @@ import { SignIn, SingUp, Token, User } from '../../interfaces/user.interfaces';
 import { BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
 import { Route } from '../../constants/route-constant';
+import { LocalstorageService } from '../localstorage.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,11 @@ export class AuthStoreService {
 
   readonly activeUser$ = this.userSubject$.asObservable();
 
-  constructor(private readonly authHttpService: AuthHttpService, private readonly router: Router) {}
+  constructor(private readonly authHttpService: AuthHttpService, private readonly router: Router, private readonly localstorageService:LocalstorageService) {}
+
+  get user(): User {
+    return <User> this.userSubject$.getValue();
+  }
 
   private set user(user: User) {
     this.userSubject$.next(user);
@@ -23,7 +28,7 @@ export class AuthStoreService {
     this.authHttpService.signIn(signInModel).subscribe({
       next: (token) => {
         this.getUser(token);
-        localStorage.setItem('token', token.token);
+        this.localstorageService.setAccessToken(token.token);
       },
     });
   }

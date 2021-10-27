@@ -8,8 +8,8 @@
           <span>First name: {{ $.user?.first_name }} </span>
           <span>Second name: {{ $.user?.last_name }} </span>
           <span>Email: {{ $.user?.email }} </span>
-          <span>Phone: +375293334455</span>
-          <span>Birth date: 01.01.2001</span>
+          <span>Phone: {{ $.user?.phone }}</span>
+          <span>Birth date: {{ $.user?.birth_date }}</span>
         </ng-container>
       </div>
     </div>
