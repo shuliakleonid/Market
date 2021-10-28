@@ -10,11 +10,6 @@ export enum Route {
   singUp = 'sing-up',
   profile = 'profile',
   cart = 'cart',
-  manage = 'adminProfile',
-  statistics = 'statistics',
-  result = 'result',
-  test = 'test',
-  assigned = 'testAssigned',
   error = 'error',
   login = 'login',
 }
