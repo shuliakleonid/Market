@@ -14,7 +14,7 @@ export interface User {
   birth_date:string;
 }
 
-export interface SingUpType {
+export interface ResponseType {
   message:string;
 }
 
