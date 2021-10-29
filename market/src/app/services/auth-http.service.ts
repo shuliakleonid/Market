@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { SignIn, SingUp, SingUpType, Token, User } from '../interfaces/user.interfaces';
+import { SignIn, SingUp, ResponseType, Token, User } from '../interfaces/user.interfaces';
 import { LoginApiUrl, SingUpApiUrl, UserApiUrl } from '../constants/route-constant';
 
 @Injectable({
@@ -15,7 +15,7 @@ export class AuthHttpService {
   }
 
   singUp(singUpModel: SingUp):Observable<any>{
-    return this.http.post<SingUpType>(SingUpApiUrl, { ...singUpModel });
+    return this.http.post<ResponseType>(SingUpApiUrl, { ...singUpModel });
   }
 
   getUser(token: Token): Observable<User> {
