@@ -1,15 +1,10 @@
 <main class="catalog">
   <mat-tab-group animationDuration="0ms">
     <mat-tab label="Group 1">
-      <div class="catalog__wrapper">
-        <app-catalog-item></app-catalog-item>
-        <app-catalog-item></app-catalog-item>
-        <app-catalog-item></app-catalog-item>
-        <app-catalog-item></app-catalog-item>
-        <app-catalog-item></app-catalog-item>
+      <div class="catalog__wrapper" *ngFor="let product of products$ | async">
+        <app-catalog-item [product]="product"></app-catalog-item>
       </div>
     </mat-tab>
-
     <mat-tab label="Group 2">
       <div class="catalog__wrapper">
         <app-catalog-item></app-catalog-item>
