@@ -11,7 +11,8 @@ export class AdminHttpService {
 
   constructor(private readonly http: HttpClient) { }
 
-  addItem(product: FormData): Observable<ResponseType> {
+  addProduct(product: FormData): Observable<ResponseType> {
     return this.http.post<ResponseType>(`${AdminApiUrl}add`,  product );
   }
+
 }

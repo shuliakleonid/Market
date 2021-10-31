@@ -9,7 +9,7 @@ export class AdminStoreService {
   constructor(private readonly adminHttpService: AdminHttpService) { }
 
   addProduct(product:FormData){
-    this.adminHttpService.addItem(product).subscribe();
+    this.adminHttpService.addProduct(product).subscribe();
   }
 
 }
