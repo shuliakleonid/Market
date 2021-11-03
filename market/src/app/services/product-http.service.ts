@@ -7,10 +7,13 @@ import { Product } from '../interfaces/product';
   providedIn: 'root',
 })
 export class ProductHttpService {
+  constructor(private readonly http: HttpClient) {}
 
-  constructor(private readonly http: HttpClient) { }
-
-  getProducts(){
+  getProducts() {
     return this.http.get<Product[]>(`${AdminApiUrl}allProduct`);
+  }
+
+  deleteProducts(id: number) {
+    return this.http.delete(`${AdminApiUrl}delete/${id}`);
   }
 }

@@ -24,9 +24,14 @@ export class ProductStoreService {
   getProducts() {
     this.productHttpService.getProducts().subscribe({
       next: (products) => {
-        console.log(products);
+        console.log(products, 'Product Store');
         this.products = [...products];
       },
     });
+  }
+
+  deleteProduct(id: number) {
+    this.productHttpService.deleteProducts(id).subscribe();
+    this.getProducts();
   }
 }
