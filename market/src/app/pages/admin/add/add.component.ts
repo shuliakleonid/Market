@@ -28,9 +28,11 @@ export class AddComponent implements OnInit {
     });
   }
 
-  handleFileInput(event: any) {
-    if (event.target.files[0]) {
-      this.selectedFile = event.target.files[0];
+  handleFileInput(event: Event) {
+    const target = event.target as HTMLInputElement;
+    const file: File = (target.files as FileList)[0];
+    if (file) {
+      this.selectedFile = file;
     }
   }
 

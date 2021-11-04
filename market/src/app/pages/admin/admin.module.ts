@@ -7,6 +7,7 @@ import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AngularMaterialCommonModule } from '../../angular-material-common.module';
 import { OrderTableComponent } from '../../conponents/order-table/order-table.component';
+import { ModalComponentComponent } from '../../conponents/modal-component/modal-component.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { OrderTableComponent } from '../../conponents/order-table/order-table.co
     AdminLayoutComponent,
     DashboardComponent,
     OrderTableComponent,
+    ModalComponentComponent,
   ],
   imports: [CommonModule, AdminRoutingModule, AngularMaterialCommonModule],
 })
