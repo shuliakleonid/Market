@@ -13,7 +13,16 @@ export class ProductHttpService {
     return this.http.get<Product[]>(`${AdminApiUrl}allProduct`);
   }
 
+  getProduct(id: number) {
+    return this.http.get<Product>(`${AdminApiUrl}${id}`);
+  }
+
   deleteProducts(id: number) {
     return this.http.delete(`${AdminApiUrl}delete/${id}`);
   }
+
+  update(product:FormData, id:number){
+    return this.http.put(`${AdminApiUrl}${id}`, product);
+  }
+
 }

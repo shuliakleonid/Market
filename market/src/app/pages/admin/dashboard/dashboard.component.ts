@@ -3,6 +3,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ProductStoreService } from '../../../services/store/product-store.service';
 import { Product } from '../../../interfaces/product';
 import { Subscription } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalComponentComponent } from '../../../conponents/modal-component/modal-component.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -24,7 +26,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   subProduct: Subscription | undefined;
 
-  constructor(private productStoreService: ProductStoreService) {
+  constructor(private productStoreService: ProductStoreService, public dialog: MatDialog) {
     this.productStoreService.getProducts();
   }
 
@@ -48,5 +50,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   deleteProduct(id: number) {
     this.productStoreService.deleteProduct(id);
+  }
+
+  openProduct(id: number) {
+    this.productStoreService.getProduct(id);
+    this.dialog.open(ModalComponentComponent);
   }
 }
