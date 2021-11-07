@@ -1,22 +1,38 @@
-import db from '../database/db.js';
+import db from "../database/db.js";
 
 class UserService {
-  async createUser(user) {
-      const {user_name, first_name, last_name, email, role, password} = user;
-      const sql = `CALL UserAddOrEdit('0','${user_name}','${first_name}','${last_name}','${email}','${role}','${password}');`;
-    const createdUser = await db.query(
-          sql,
-           (err, rows) => {
-          const arr = rows.map((element) => {
-              console.log(element, "ELEMENT");
-              if (element.constructor === Array)
-                return("Inserted user id : " + element[0].iduser);
-            });
-            console.log(arr,"ARRAY");
-            return arr[0];
-          }
-      );
-    console.log(createdUser);
+  getAllUsers(result) {
+    return db.query("SELECT * FROM USER", (err, res) => {
+      if (err) {
+        result(null, err);
+      } else {
+        result(null, res);
+      }
+    });
+  }
+
+  getUser(id, result) {
+    db.query(
+      "SELECT email,first_name,last_name,phone,birth_date FROM user WHERE token = ?",
+      [id],
+      (err, rows) => {
+        if (err) {
+          result(null, err);
+        } else {
+          result(null, rows[0]);
+        }
+      }
+    );
+  }
+
+  deleteUser(id,result){
+    db.query("DELETE FROM USER WHERE id = ?", [id], (err, rows) => {
+      if (err) {
+        result(null, err);
+      } else {
+        result(null, rows);
+      }
+    })
   }
 }
 

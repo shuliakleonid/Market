@@ -14,7 +14,7 @@ export class AuthHttpService {
     return this.http.post<Token>(LoginApiUrl, { ...signInModel });
   }
 
-  singUp(singUpModel: SingUp):Observable<any>{
+  singUp(singUpModel: SingUp): Observable<any> {
     return this.http.post<ResponseType>(SingUpApiUrl, { ...singUpModel });
   }
 

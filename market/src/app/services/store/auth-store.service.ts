@@ -14,10 +14,14 @@ export class AuthStoreService {
 
   readonly activeUser$ = this.userSubject$.asObservable();
 
-  constructor(private readonly authHttpService: AuthHttpService, private readonly router: Router, private readonly localstorageService:LocalstorageService) {}
+  constructor(
+    private readonly authHttpService: AuthHttpService,
+    private readonly router: Router,
+    private readonly localstorageService: LocalstorageService,
+  ) {}
 
   get user(): User {
-    return <User> this.userSubject$.getValue();
+    return <User>this.userSubject$.getValue();
   }
 
   private set user(user: User) {

@@ -21,8 +21,7 @@ export class ProductHttpService {
     return this.http.delete(`${AdminApiUrl}delete/${id}`);
   }
 
-  update(product:FormData, id:number){
+  update(product: FormData, id: number) {
     return this.http.put(`${AdminApiUrl}${id}`, product);
   }
-
 }

@@ -7,13 +7,12 @@ import { AuthStoreService } from '../../services/store/auth-store.service';
   templateUrl: './sing-up.component.html',
   styleUrls: ['./sing-up.component.scss'],
 })
-export class SingUpComponent implements OnInit{
+export class SingUpComponent implements OnInit {
   public SingUpReactiveForm!: FormGroup;
 
   submitted = false;
 
-  constructor(private fb: FormBuilder, private readonly authStoreService: AuthStoreService ) {
-  }
+  constructor(private fb: FormBuilder, private readonly authStoreService: AuthStoreService) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -29,12 +28,12 @@ export class SingUpComponent implements OnInit{
 
     this.submitted = false;
     this.authStoreService.singUp({
-      first_name:this.SingUpReactiveForm.value.firstName,
-      last_name:this.SingUpReactiveForm.value.lastName,
-      email:this.SingUpReactiveForm.value.email,
-      phone:this.SingUpReactiveForm.value.phone,
+      first_name: this.SingUpReactiveForm.value.firstName,
+      last_name: this.SingUpReactiveForm.value.lastName,
+      email: this.SingUpReactiveForm.value.email,
+      phone: this.SingUpReactiveForm.value.phone,
       birth_date: this.SingUpReactiveForm.value.birthDate,
-      password:this.SingUpReactiveForm.value.password,
+      password: this.SingUpReactiveForm.value.password,
     });
   }
 

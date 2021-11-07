@@ -1,11 +1,9 @@
 <mat-card class="card">
-  <h2>{{ product?.title }}</h2>
-  <div>
+  <h2 class="card__title">{{ product?.title }}</h2>
+  <div class="card__img">
     <img class="card__img" mat-card-sm-image [src]="product?.image" alt="pic" />
   </div>
   <p>{{ product?.description }}</p>
-  <div>
-    <button>Add +</button>
-    <span>{{ product?.price }} $</span>
-  </div>
+  <span>{{ product?.price }} $</span>
+  <button mat-raised-button color="primary">Add to Cart</button>
 </mat-card>
