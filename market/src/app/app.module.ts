@@ -15,8 +15,13 @@ const INTERCEPTOR_PROVIDER: Provider = {
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, BrowserAnimationsModule, HttpClientModule,
-    AppRoutingModule, AngularMaterialCommonModule],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    AppRoutingModule,
+    AngularMaterialCommonModule,
+  ],
   providers: [INTERCEPTOR_PROVIDER],
   exports: [],
   bootstrap: [AppComponent],

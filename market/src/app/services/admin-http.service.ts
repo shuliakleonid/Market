@@ -8,11 +8,9 @@ import { AdminApiUrl } from '../constants/route-constant';
   providedIn: 'root',
 })
 export class AdminHttpService {
-
-  constructor(private readonly http: HttpClient) { }
+  constructor(private readonly http: HttpClient) {}
 
   addProduct(product: FormData): Observable<ResponseType> {
-    return this.http.post<ResponseType>(`${AdminApiUrl}add`,  product );
+    return this.http.post<ResponseType>(`${AdminApiUrl}add`, product);
   }
-
 }

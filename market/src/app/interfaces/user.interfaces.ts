@@ -1,28 +1,27 @@
-
 export interface Token {
-  token:string;
+  token: string;
 }
 export interface SignIn {
-  email:string;
-  password:string;
+  email: string;
+  password: string;
 }
 export interface User {
-  email:string;
-  first_name:string;
-  last_name:string;
-  phone:string;
-  birth_date:string;
+  email: string;
+  first_name: string;
+  last_name: string;
+  phone: string;
+  birth_date: string;
 }
 
 export interface ResponseType {
-  message:string;
+  message: string;
 }
 
 export interface SingUp {
-  first_name:string;
-  last_name:string;
-  email:string;
-  phone:string;
-  birth_date:string;
-  password:string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  phone: string;
+  birth_date: string;
+  password: string;
 }

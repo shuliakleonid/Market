@@ -64,7 +64,7 @@ export class ModalComponentComponent implements OnInit, OnDestroy {
     if (this.selectedFile) {
       formData.append('image', this.selectedFile);
     }
-    if (this.product){
+    if (this.product) {
       this.productStoreService.updateProduct(formData, this.product.id);
     }
   }

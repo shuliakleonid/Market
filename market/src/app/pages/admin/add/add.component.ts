@@ -14,7 +14,6 @@ export class AddComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private adminStoreService: AdminStoreService) {}
 
-
   ngOnInit(): void {
     this.initForm();
   }
@@ -36,7 +35,7 @@ export class AddComponent implements OnInit {
     }
   }
 
-  onSubmit(){
+  onSubmit() {
     if (this.selectedFile) {
       const formData = new FormData();
       formData.append('image', this.selectedFile);

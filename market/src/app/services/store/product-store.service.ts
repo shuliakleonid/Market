@@ -18,7 +18,7 @@ export class ProductStoreService {
   constructor(private readonly productHttpService: ProductHttpService) {}
 
   private get products(): Product[] {
-    return <Product[]> this.productsSubject$.getValue();
+    return <Product[]>this.productsSubject$.getValue();
   }
 
   private set products(products: Product[]) {
@@ -26,7 +26,7 @@ export class ProductStoreService {
   }
 
   private get product(): Product {
-    return <Product> this.productSubject$.getValue();
+    return <Product>this.productSubject$.getValue();
   }
 
   private set product(product: Product) {
@@ -42,7 +42,7 @@ export class ProductStoreService {
     });
   }
 
-  getProduct(id:number){
+  getProduct(id: number) {
     this.productHttpService.getProduct(id).subscribe({
       next: (product) => {
         this.product = { ...product };
@@ -55,7 +55,7 @@ export class ProductStoreService {
     this.getProducts();
   }
 
-  updateProduct(product:FormData, id:number){
+  updateProduct(product: FormData, id: number) {
     this.productHttpService.update(product, id).subscribe();
     // this.getProduct(id);
   }
