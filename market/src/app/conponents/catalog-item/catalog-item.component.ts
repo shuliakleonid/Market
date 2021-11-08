@@ -6,7 +6,7 @@ import { Product } from '../../interfaces/product';
   templateUrl: './catalog-item.component.html',
   styleUrls: ['./catalog-item.component.scss'],
 })
-export class CatalogItemComponent implements OnInit{
+export class CatalogItemComponent implements OnInit {
   @Input() product: Product | undefined;
 
   ngOnInit(): void {

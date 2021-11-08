@@ -27,7 +27,11 @@ class UserController {
       }
 
       await UserService.getUser(req.params.id, (err, rows) => {
-        res.json(rows);
+        if (err) {
+          res.json(err);
+        } else {
+          res.json(rows);
+        }
       });
     } catch (err) {
       console.log(err);
@@ -68,7 +72,11 @@ class UserController {
   async deleteUser(req, res) {
     try {
       await UserService.deleteUser(req.params.id, (err, rows) => {
-        res.json("Deleted successfully.");
+        if (err) {
+          res.json(err);
+        } else {
+          res.json("Deleted successfully.");
+        }
       });
     } catch (err) {
       console.log(err);
