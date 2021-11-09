@@ -54,6 +54,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   openProduct(id: number) {
     this.productStoreService.getProduct(id);
-    this.dialog.open(ModalComponentComponent);
+    this.dialog.open(ModalComponentComponent, {
+      height: '80vh',
+      width: '50vw',
+    });
   }
 }
