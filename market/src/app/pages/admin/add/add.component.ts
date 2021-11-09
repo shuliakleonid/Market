@@ -10,6 +10,8 @@ import { AdminStoreService } from '../../../services/store/admin-store.service';
 export class AddComponent implements OnInit {
   public selectedFile: File | null | undefined;
 
+  imgFilePath: string | ArrayBuffer | null | undefined;
+
   public AddItemReactiveForm!: FormGroup;
 
   constructor(private fb: FormBuilder, private adminStoreService: AdminStoreService) {}
@@ -32,6 +34,11 @@ export class AddComponent implements OnInit {
     const file: File = (target.files as FileList)[0];
     if (file) {
       this.selectedFile = file;
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.imgFilePath = reader.result;
+      };
     }
   }
 
