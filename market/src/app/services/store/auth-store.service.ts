@@ -5,6 +5,7 @@ import { BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
 import { Route } from '../../constants/route-constant';
 import { LocalstorageService } from '../localstorage.service';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +15,8 @@ export class AuthStoreService {
 
   readonly activeUser$ = this.userSubject$.asObservable();
 
+  readonly isAdmin$ = this.userSubject$.pipe(map((user) => user?.role));
+
   constructor(
     private readonly authHttpService: AuthHttpService,
     private readonly router: Router,
@@ -21,7 +24,7 @@ export class AuthStoreService {
   ) {}
 
   get user(): User {
-    return <User>this.userSubject$.getValue();
+    return <User> this.userSubject$.getValue();
   }
 
   private set user(user: User) {
@@ -48,7 +51,7 @@ export class AuthStoreService {
         console.log(user);
         this.user = { ...user };
         if (user) {
-          this.router.navigate([Route.profile]);
+          this.router.navigate([Route.catalog]);
         }
       },
     });

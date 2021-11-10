@@ -13,7 +13,7 @@ class UserService {
 
   getUser(id, result) {
     db.query(
-      "SELECT email,first_name,last_name,phone,birth_date FROM user WHERE token = ?",
+      "SELECT email,first_name,last_name,phone,birth_date,role FROM user WHERE token = ?",
       [id],
       (err, rows) => {
         if (err) {

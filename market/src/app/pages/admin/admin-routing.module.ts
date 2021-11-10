@@ -4,6 +4,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
 import { AddComponent } from './add/add.component';
 import { OrdersComponent } from './orders/orders.component';
+import { AdminGuard } from '../../guard/admin.guard';
 
 const routes: Routes = [
   {
@@ -14,6 +15,7 @@ const routes: Routes = [
       { path: 'add', component: AddComponent },
       { path: 'orders', component: OrdersComponent },
     ],
+    canActivate: [AdminGuard],
   },
 ];
 
