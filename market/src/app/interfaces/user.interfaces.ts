@@ -11,6 +11,7 @@ export interface User {
   last_name: string;
   phone: string;
   birth_date: string;
+  role:string;
 }
 
 export interface ResponseType {

@@ -8,6 +8,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AngularMaterialCommonModule } from '../../angular-material-common.module';
 import { OrderTableComponent } from '../../conponents/order-table/order-table.component';
 import { ModalComponentComponent } from '../../conponents/modal-component/modal-component.component';
+import { AdminGuard } from '../../guard/admin.guard';
 
 @NgModule({
   declarations: [
@@ -19,5 +20,6 @@ import { ModalComponentComponent } from '../../conponents/modal-component/modal-
     ModalComponentComponent,
   ],
   imports: [CommonModule, AdminRoutingModule, AngularMaterialCommonModule],
+  providers:[AdminGuard],
 })
 export class AdminModule {}
