@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthStoreService } from '../../services/store/auth-store.service';
+import { LocalstorageService } from '../../services/localstorage.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
 
   submitted = false;
 
-  constructor(private fb: FormBuilder, private readonly authStoreService: AuthStoreService) {}
+  constructor(private fb: FormBuilder, private readonly authStoreService: AuthStoreService, private readonly localstorageService: LocalstorageService) {}
 
   user$ = this.authStoreService.activeUser$;
 
@@ -22,6 +23,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
+    this.localstorageService.clearAccessToken();
     const { controls } = this.loginReactiveForm;
     if (this.loginReactiveForm.invalid) {
       Object.keys(controls).forEach((controlName) => controls[controlName].markAsTouched());
