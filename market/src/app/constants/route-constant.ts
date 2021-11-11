@@ -13,4 +13,9 @@ export enum Route {
   cart = 'cart',
   error = 'error',
   login = 'login',
+  adminWithSlash = '/admin',
+  loginWithSlash = '/login',
+}
+export enum AdminRoute {
+  dashboard = '/dashboard',
 }
