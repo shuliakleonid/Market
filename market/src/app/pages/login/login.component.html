@@ -1,15 +1,9 @@
-<div class="login_page" >
-  <mat-card class="login_card" >
+<div class="login_page">
+  <mat-card class="login_card">
     <form [formGroup]="loginReactiveForm" (submit)="onSubmit()">
       <mat-form-field class="form-field">
         <mat-label for="userLogin">Login:</mat-label>
-        <input
-          matInput
-          type="email"
-          id="userLogin"
-          formControlName="userLogin"
-          maxlength="40"
-        />
+        <input matInput type="email" id="userLogin" formControlName="userLogin" maxlength="40" />
       </mat-form-field>
       <mat-form-field class="form-field">
         <mat-label for="userPassword">Password:</mat-label>

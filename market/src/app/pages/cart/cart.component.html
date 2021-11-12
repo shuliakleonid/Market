@@ -1,0 +1,101 @@
+<section class="cart">
+  <mat-card class="cart__personal">
+    <div>
+      <h2>Personal information</h2>
+      <div>
+        <form class="cart__form">
+          <div class="cart__data">
+            <mat-form-field appearance="legacy">
+              <mat-label>First name</mat-label>
+              <input matInput placeholder="First name" type="text" />
+            </mat-form-field>
+            <mat-form-field appearance="legacy">
+              <mat-label>Last name</mat-label>
+              <input matInput placeholder="Last name" type="text" />
+            </mat-form-field>
+            <mat-form-field appearance="legacy">
+              <mat-label>Phone</mat-label>
+              <input matInput placeholder="You Phone" type="tel" />
+              <mat-hint>example: +375293334455</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="legacy">
+              <mat-label>Email</mat-label>
+              <input matInput placeholder="Email" type="email" />
+            </mat-form-field>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="cart__delivery">
+      <h2>Personal information</h2>
+      <div>
+        <form class="cart__form">
+          <div class="cart__data">
+            <mat-form-field appearance="legacy">
+              <mat-label>Country</mat-label>
+              <input matInput placeholder="Country" type="text" />
+            </mat-form-field>
+            <mat-form-field appearance="legacy">
+              <mat-label>Town</mat-label>
+              <input matInput placeholder="Town" type="text" />
+            </mat-form-field>
+            <mat-form-field appearance="legacy">
+              <mat-label>Street</mat-label>
+              <input matInput placeholder="Street" type="tel" />
+            </mat-form-field>
+            <mat-form-field appearance="legacy">
+              <mat-label>Post code</mat-label>
+              <input matInput placeholder="Post code" type="email" />
+            </mat-form-field>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="cart__payment">
+      <div class="cart__payment-item">
+        <input type="checkbox" />
+        <span>Apple Pay</span>
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Apple_Pay_logo.svg"
+          alt="Apple pay"
+        />
+      </div>
+      <div class="cart__payment-item">
+        <input type="checkbox" />
+        <span>Pay Pal</span>
+        <img
+          src="https://www.paypalobjects.com/digitalassets/c/website/logo/full-text/pp_fc_hl.svg"
+          alt="Apple pay"
+        />
+      </div>
+      <div class="cart__payment-item">
+        <input type="checkbox" />
+        <span>Credit a difit card</span>
+        <img
+          src="https://www.mastercard.by/content/dam/public/mastercardcom/by/ru/homepage/icons/mastercard-logo-52.svg"
+          alt="Apple pay"
+        />
+      </div>
+    </div>
+  </mat-card>
+
+  <mat-card class="cart__order-list">
+    <div>
+      <h2>You Order:</h2>
+      <div class="cart__sum-order">
+        <span>Subtotal: $100</span>
+        <span>Delivery: $10</span>
+        <span>Total: $110</span>
+        <button mat-raised-button color="primary">Purchase</button>
+      </div>
+
+      <div class="cart__oder">
+        <app-cart-item></app-cart-item>
+        <app-cart-item></app-cart-item>
+        <app-cart-item></app-cart-item>
+        <app-cart-item></app-cart-item>
+        <app-cart-item></app-cart-item>
+      </div>
+    </div>
+  </mat-card>
+</section>

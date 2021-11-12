@@ -1,0 +1,23 @@
+.page404 {
+  height: 100%;
+  text-align: center;
+  margin: 2rem auto;
+  background: #fff;
+  &__img {
+    width: 100%;
+    height: 50vh;
+    background-image: url(../../../assets/dribbble_1.gif);
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  &__title {
+    font-size: 6rem;
+  }
+  &__link {
+    display: inline-block;
+    margin: 1.5rem 0;
+    padding: 1rem 1.5rem;
+    color: #fff;
+    background: #39ac31;
+  }
+}

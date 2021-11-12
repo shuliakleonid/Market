@@ -1,29 +1,42 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {Page404Component} from './pages/page404/page404.component';
+import { Route } from './constants/route-constant';
 
 const routes: Routes = [
-  {path:'',redirectTo:'catalog',pathMatch: 'full'},
+  { path: '', redirectTo: Route.login, pathMatch: 'full' },
   {
-    path: 'login',
+    path: Route.login,
     loadChildren: () => import('../app/pages/login/login.module').then((m) => m.LoginModule),
   },
   {
-    path: 'catalog',
+    path: Route.catalog,
     loadChildren: () => import('../app/pages/catalog/catalog.module').then((m) => m.CatalogModule),
   },
   {
-    path: 'admin',
+    path: Route.admin,
     loadChildren: () => import('../app/pages/admin/admin.module').then((m) => m.AdminModule),
   },
-  {path:'sing-up',
+  {
+    path: Route.singUp,
     loadChildren: () => import('../app/pages/sing-up/sing-up.module').then((m) => m.SingUpModule),
   },
-  {path: '**', component: Page404Component }
+  {
+    path: Route.profile,
+    loadChildren: () =>
+      import('../app/pages/user-profile/user-profile.module').then((m) => m.UserProfileModule),
+  },
+  {
+    path: Route.cart,
+    loadChildren: () => import('../app/pages/cart/cart.module').then((m) => m.CartModule),
+  },
+  {
+    path: '**',
+    loadChildren: () => import('../app/pages/page404/page404.module').then((m) => m.Page404Module),
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

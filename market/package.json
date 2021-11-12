@@ -7,9 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "eslint \"**/*.{ts,tsx}\"",
-    "lint:fix": "eslint \"**/*.{ts,tsx}\" --fix --color --format visualstudio",
-    "lint:styles": "stylelint \"src/**/*.scss\" --fix",
+    "lint": "ng lint",
+    "lint:fix": "eslint \"**/*.{js,ts,tsx}\" --fix --color --format visualstudio",
     "prettier:fix": "prettier \"src/**/*.*\" --write"
   },
   "private": true,
@@ -31,17 +30,23 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~12.2.8",
+    "@angular-eslint/builder": "12.5.0",
+    "@angular-eslint/eslint-plugin": "12.5.0",
+    "@angular-eslint/eslint-plugin-template": "12.5.0",
+    "@angular-eslint/schematics": "12.5.0",
+    "@angular-eslint/template-parser": "12.5.0",
     "@angular/cli": "~12.2.8",
     "@angular/compiler-cli": "~12.2.0",
     "@types/jasmine": "~3.8.0",
     "@types/node": "^12.11.1",
-    "eslint": "^7.32.0",
+    "@typescript-eslint/eslint-plugin": "^4.28.2",
+    "@typescript-eslint/parser": "^4.28.2",
+    "eslint": "^7.26.0",
     "eslint-config-airbnb-typescript": "^14.0.1",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-jasmine": "^4.1.2",
     "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-protractor": "^2.1.1",
     "husky": "^7.0.2",
     "jasmine-core": "~3.8.0",
     "karma": "~6.3.0",
@@ -49,18 +54,18 @@
     "karma-coverage": "~2.0.3",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
-    "stylelint": "^13.13.1",
-    "stylelint-config-standard": "^22.0.0",
+    "lint-staged": "^11.2.3",
+    "prettier": "^2.4.1",
     "typescript": "~4.3.5"
-  },
-  "engines": {
-    "node": "14.15.1",
-    "npm": "6.14.8",
-    "yarn": "1.22.5"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint:fix && npm run lint:styles && npm run prettier:fix && git add ."
+      "pre-commit": "lint-staged --relative"
     }
+  },
+  "lint-staged": {
+    "*.{js,ts}": [
+      "npm run lint:fix && npm run prettier:fix && git add ."
+    ]
   }
 }

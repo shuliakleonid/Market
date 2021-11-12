@@ -1,0 +1,64 @@
+.profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  h1 {
+    text-align: center;
+    font-size: 4rem;
+  }
+  &__container {
+    max-width: 90%;
+    margin: 1rem auto;
+  }
+
+  &__data {
+    display: flex;
+    column-gap: 1rem;
+  }
+  &__img {
+    width: 10rem;
+    height: 10rem;
+    background-image: url('https://picsum.photos/id/1025/200/300');
+    background-repeat: no-repeat;
+    background-position: inherit;
+    border-radius: 50%;
+  }
+
+  &__person {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__card {
+    width: 36rem;
+    height: 23rem;
+    background-repeat: no-repeat;
+    background-position: inherit;
+    background-image: url('https://gc.onliner.by/images/auth/bg-clover-secondary.png');
+  }
+  &__table {
+    width: 100%;
+  }
+}
+
+.mat-column-position {
+  width: 2rem;
+  border-right: 1px solid black;
+  padding-right: 1.7rem;
+  text-align: center;
+}
+.mat-column-name {
+  padding-left: 1rem;
+  font-size: 1.5rem;
+}
+
+.mat-column-price {
+  font-style: italic;
+}
+
+.mat-column-quantity {
+  width: 2rem;
+  text-align: center;
+  font-weight: bold;
+}

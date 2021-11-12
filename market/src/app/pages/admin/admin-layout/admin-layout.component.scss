@@ -2,13 +2,21 @@
   display: flex;
   justify-content: space-between;
   background-color: aqua;
-  &__list {
-    display: flex;
-    list-style-type: none;
-  }
-  &__item{
+
+  &__title {
     margin: 1rem;
   }
+
+  &__list {
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+  }
+
+  &__item {
+    margin: 0 1rem;
+  }
+
   a {
     text-decoration: none;
   }

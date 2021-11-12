@@ -1,0 +1,28 @@
+{
+  "name": "sdudent-backend",
+  "version": "1.0.0",
+  "description": "API",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "author": "l.shuliak",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.1",
+    "multer": "^1.4.3",
+    "mysql": "^2.18.1",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^10.0.0",
+    "express-validator": "^6.13.0",
+    "nodemon": "^2.0.13"
+  }
+}

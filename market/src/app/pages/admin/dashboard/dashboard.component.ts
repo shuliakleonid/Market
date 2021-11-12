@@ -1,39 +1,62 @@
-import { Component, OnInit } from '@angular/core';
-import {MatTableDataSource} from '@angular/material/table';
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  price: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', price: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', price: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', price: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', price: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', price: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', price: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', price: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', price: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', price: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', price: 20.1797, symbol: 'Ne'},
-];
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { ProductStoreService } from '../../../services/store/product-store.service';
+import { Product } from '../../../interfaces/product';
+import { Subscription } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalComponentComponent } from '../../../conponents/modal-component/modal-component.component';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent implements OnInit {
-  ngOnInit(): void {
+export class DashboardComponent implements OnInit, OnDestroy {
+  displayedColumns: string[] = [
+    'title',
+    'description',
+    'price',
+    'image',
+    'quantity',
+    'open',
+    'delete',
+  ];
+
+  dataSource!: MatTableDataSource<Product>;
+
+  subProduct: Subscription | undefined;
+
+  constructor(private productStoreService: ProductStoreService, public dialog: MatDialog) {
+    this.productStoreService.getProducts();
   }
-  displayedColumns: string[] = ['position', 'name', 'price', 'date of creation','open','delete'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  ngOnInit(): void {
+    this.subProduct = this.productStoreService.products$.subscribe((product) => {
+      console.log(product, 'PRODUCT');
+      if (product) {
+        this.dataSource = new MatTableDataSource(product);
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.subProduct) this.subProduct.unsubscribe();
+  }
+
+  deleteProduct(id: number) {
+    this.productStoreService.deleteProduct(id);
+  }
+
+  openProduct(id: number) {
+    this.productStoreService.getProduct(id);
+    this.dialog.open(ModalComponentComponent, {
+      height: '80vh',
+      width: '50vw',
+    });
   }
 }
