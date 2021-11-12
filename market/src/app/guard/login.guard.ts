@@ -30,11 +30,11 @@ export class LoginGuard implements CanActivate {
     if (state.url === Route.loginWithSlash) return true;
 
     const token = this.localstorageService.getAccessToken();
-    if (token !== null) {
-      this.authStoreService.getUser({ token: token });
+    if (token === null) {
+      this.router.navigate([Route.login]);
     }
-    this.router.navigate([Route.login]);
 
+    this.authStoreService.getUser({ token: token as string });
     const isAdmin = this.authStoreService.user?.role === UserRole.admin;
     if (!isAdmin) {
       this.router.navigate([Route.profile]);

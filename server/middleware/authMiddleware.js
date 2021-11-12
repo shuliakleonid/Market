@@ -5,7 +5,8 @@ const authMiddleware = async (req, res, next) => {
     next();
   }
   try {
-    const token = req.headers.authorization.split(" ")[1];
+    let token = req.headers.authorization?.split(" ")[1];
+    token = token ?? req.params?.id
     if (!token) {
       return res
           .status(403)
