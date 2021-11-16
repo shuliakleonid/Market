@@ -5,5 +5,7 @@
   </div>
   <p>{{ product?.description }}</p>
   <span>{{ product?.price }} $</span>
-  <button mat-raised-button color="primary">Add to Cart</button>
+  <ng-container *ngIf="product">
+    <button mat-raised-button color="primary" (click)="addProduct(product)">Add to Cart</button>
+  </ng-container>
 </mat-card>

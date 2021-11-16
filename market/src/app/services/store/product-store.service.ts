@@ -7,6 +7,8 @@ import { ProductHttpService } from '../product-http.service';
   providedIn: 'root',
 })
 export class ProductStoreService {
+
+
   private readonly productsSubject$ = new BehaviorSubject<Product[] | null>(null);
 
   private readonly productSubject$ = new BehaviorSubject<Product | null>(null);
@@ -18,7 +20,7 @@ export class ProductStoreService {
   constructor(private readonly productHttpService: ProductHttpService) {}
 
   private get products(): Product[] {
-    return <Product[]>this.productsSubject$.getValue();
+    return <Product[]> this.productsSubject$.getValue();
   }
 
   private set products(products: Product[]) {
@@ -26,12 +28,14 @@ export class ProductStoreService {
   }
 
   private get product(): Product {
-    return <Product>this.productSubject$.getValue();
+    return <Product> this.productSubject$.getValue();
   }
 
   private set product(product: Product) {
     this.productSubject$.next(product);
   }
+
+  cartProducts: Product[] = [];
 
   getProducts() {
     this.productHttpService.getProducts().subscribe({
@@ -58,5 +62,10 @@ export class ProductStoreService {
   updateProduct(product: FormData, id: number) {
     this.productHttpService.update(product, id).subscribe();
     // this.getProduct(id);
+  }
+
+  addProductsCart(product:Product) {
+    this.cartProducts = [...this.cartProducts, { ...product, quantityCart:1 }];
+    console.log(this.cartProducts, 'CartProduct');
   }
 }

@@ -1,13 +1,13 @@
 <mat-card class="order">
-  <img src="https://picsum.photos/100" alt="Item" />
+  <img src="{{ product?.image }}" alt="Item" />
   <div>
-    <span>Title</span>
+    <span>{{ product?.title }}</span>
     <span>Quantity</span>
     <span>
       <button class="order__button" type="button">-</button>
-      <span>1</span>
+      <span>{{ product?.quantityCart }}</span>
       <button class="order__button" type="button">+</button>
     </span>
-    <span>$10</span>
+    <span>{{ product?.price }}</span>
   </div>
 </mat-card>
