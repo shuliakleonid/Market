@@ -14,7 +14,11 @@ export class LoginComponent implements OnInit {
 
   submitted = false;
 
-  constructor(private fb: FormBuilder, private readonly authStoreService: AuthStoreService, private readonly localstorageService: LocalstorageService) {}
+  constructor(
+    private fb: FormBuilder,
+    private readonly authStoreService: AuthStoreService,
+    private readonly localstorageService: LocalstorageService,
+  ) {}
 
   user$ = this.authStoreService.activeUser$;
 

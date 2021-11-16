@@ -29,7 +29,6 @@ export class AdminGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-
     if (state.url === Route.adminWithSlash) return true;
 
     const token = this.localstorageService.getAccessToken();

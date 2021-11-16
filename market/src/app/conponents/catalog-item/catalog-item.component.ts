@@ -8,8 +8,7 @@ import { ProductStoreService } from '../../services/store/product-store.service'
   styleUrls: ['./catalog-item.component.scss'],
 })
 export class CatalogItemComponent implements OnInit {
-  constructor(private readonly productService:ProductStoreService) {
-  }
+  constructor(private readonly productService: ProductStoreService) {}
 
   @Input() product: Product | undefined;
 

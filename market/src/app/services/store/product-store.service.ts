@@ -7,8 +7,6 @@ import { ProductHttpService } from '../product-http.service';
   providedIn: 'root',
 })
 export class ProductStoreService {
-
-
   private readonly productsSubject$ = new BehaviorSubject<Product[] | null>(null);
 
   private readonly productSubject$ = new BehaviorSubject<Product | null>(null);
@@ -64,8 +62,8 @@ export class ProductStoreService {
     // this.getProduct(id);
   }
 
-  addProductsCart(product:Product) {
-    this.cartProducts = [...this.cartProducts, { ...product, quantityCart:1 }];
+  addProductsCart(product: Product) {
+    this.cartProducts = [...this.cartProducts, { ...product, quantityCart: 1 }];
     console.log(this.cartProducts, 'CartProduct');
   }
 }

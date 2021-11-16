@@ -1,17 +1,17 @@
-.product-add{
-  &__card{
+.product-add {
+  &__card {
     margin: 2rem;
   }
-  &__form{
+  &__form {
     display: flex;
     flex-direction: column;
   }
- &__img{
-   width: 20rem;
-   height: 15rem;
-   margin-bottom: 2rem;
- }
-  &__button{
+  &__img {
+    width: 20rem;
+    height: 15rem;
+    margin-bottom: 2rem;
+  }
+  &__button {
     margin: 2rem 0;
   }
 }

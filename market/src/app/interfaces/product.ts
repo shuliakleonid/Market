@@ -5,5 +5,5 @@ export interface Product {
   price: number;
   quantity: string;
   title: string;
-  quantityCart:number;
+  quantityCart: number;
 }

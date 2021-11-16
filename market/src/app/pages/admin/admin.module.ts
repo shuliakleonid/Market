@@ -20,6 +20,6 @@ import { AdminGuard } from '../../guard/admin.guard';
     ModalComponentComponent,
   ],
   imports: [CommonModule, AdminRoutingModule, AngularMaterialCommonModule],
-  providers:[AdminGuard],
+  providers: [AdminGuard],
 })
 export class AdminModule {}
