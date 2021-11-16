@@ -8,4 +8,12 @@ import { Product } from '../../interfaces/product';
 })
 export class CartItemComponent {
   @Input() product: Product | undefined;
+
+  addCountProduct() {
+    this.product!.quantityCart += 1;
+  }
+
+  deleteCountProduct() {
+    this.product!.quantityCart -= 1;
+  }
 }

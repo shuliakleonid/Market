@@ -4,9 +4,9 @@
     <span>{{ product?.title }}</span>
     <span>Quantity</span>
     <span>
-      <button class="order__button" type="button">-</button>
+      <button class="order__button" type="button" (click)="deleteCountProduct()">-</button>
       <span>{{ product?.quantityCart }}</span>
-      <button class="order__button" type="button">+</button>
+      <button class="order__button" type="button" (click)="addCountProduct()">+</button>
     </span>
     <span>{{ product?.price }}</span>
   </div>

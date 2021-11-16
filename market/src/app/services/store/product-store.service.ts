@@ -63,7 +63,13 @@ export class ProductStoreService {
   }
 
   addProductsCart(product: Product) {
-    this.cartProducts = [...this.cartProducts, { ...product, quantityCart: 1 }];
-    console.log(this.cartProducts, 'CartProduct');
+    if (!this.cartProducts.length) this.cartProducts = [...this.cartProducts, { ...product, quantityCart: 1 }];
+    const repeatProdCart = this.cartProducts.findIndex(prodCart => prodCart.id === product.id);
+    if (repeatProdCart >= 0){
+      this.cartProducts[repeatProdCart].quantityCart += 1;
+    } else {
+      this.cartProducts = [...this.cartProducts, { ...product, quantityCart: 1 }];
+    }
+    console.table(this.cartProducts);
   }
 }
