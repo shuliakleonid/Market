@@ -9,9 +9,10 @@ import { Route } from '../../../constants/route-constant';
   styleUrls: ['./admin-layout.component.scss'],
 })
 export class AdminLayoutComponent {
-  constructor(private readonly router: Router,
-    private readonly localstorageService: LocalstorageService) {
-  }
+  constructor(
+    private readonly router: Router,
+    private readonly localstorageService: LocalstorageService,
+  ) {}
 
   logout() {
     this.localstorageService.clearAccessToken();

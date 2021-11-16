@@ -26,7 +26,6 @@ export class LoginGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-
     if (state.url === Route.loginWithSlash) return true;
 
     const token = this.localstorageService.getAccessToken();

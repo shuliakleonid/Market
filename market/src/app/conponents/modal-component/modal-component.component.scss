@@ -1,18 +1,15 @@
-
-.modal{
+.modal {
   &__form {
     display: flex;
     flex-direction: column;
   }
-  &__img{
+  &__img {
     width: 20rem;
     height: 20rem;
     margin-bottom: 2rem;
   }
-  &__buttons{
+  &__buttons {
     display: flex;
     justify-content: space-between;
   }
 }
-
-
