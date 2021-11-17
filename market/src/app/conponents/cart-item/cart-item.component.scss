@@ -1,6 +1,7 @@
 .order {
   display: flex;
   margin: 1rem auto;
+  font-size: 1rem;
 
   img {
     width: 5rem;
@@ -9,11 +10,21 @@
   }
 
   div {
+    width: 100%;
     display: flex;
     flex-direction: column;
   }
 
   &__button {
     border-radius: 50%;
+  }
+
+  &__count{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    span{
+      font-size:2rem;
+    }
   }
 }
