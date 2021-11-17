@@ -89,7 +89,10 @@
       </div>
 
       <div class="cart__oder" *ngFor="let product of products">
-        <app-cart-item [product]="product"></app-cart-item>
+        <app-cart-item
+          [product]="product"
+          (changeQuantity)="addQuantityProduct($event)"
+        ></app-cart-item>
       </div>
     </div>
   </mat-card>

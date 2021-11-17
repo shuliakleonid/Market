@@ -2,12 +2,16 @@
   <img src="{{ product?.image }}" alt="Item" />
   <div>
     <span>{{ product?.title }}</span>
-    <span>Quantity</span>
-    <span>
-      <button class="order__button" type="button" (click)="deleteCountProduct()">-</button>
+    <span>Quantity:</span>
+    <span class="order__count">
+      <button mat-mini-fab color="accent" aria-label="list icon" (click)="deleteCountProduct()">
+        <mat-icon>exposure_neg_1</mat-icon>
+      </button>
       <span>{{ product?.quantityCart }}</span>
-      <button class="order__button" type="button" (click)="addCountProduct()">+</button>
+      <button mat-mini-fab color="accent" aria-label="list icon" (click)="addCountProduct()">
+        <mat-icon>plus_one</mat-icon>
+      </button>
     </span>
-    <span>{{ product?.price }}</span>
+    <span>Price: {{ product?.price }}</span>
   </div>
 </mat-card>

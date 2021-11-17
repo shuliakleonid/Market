@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from '../../interfaces/product';
 
 @Component({
@@ -9,11 +9,16 @@ import { Product } from '../../interfaces/product';
 export class CartItemComponent {
   @Input() product: Product | undefined;
 
+  @Output()
+  changeQuantity = new EventEmitter();
+
   addCountProduct() {
     this.product!.quantityCart += 1;
+    this.changeQuantity.emit(this.product);
   }
 
   deleteCountProduct() {
     this.product!.quantityCart -= 1;
+    this.changeQuantity.emit(this.product);
   }
 }
