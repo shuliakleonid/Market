@@ -4,11 +4,11 @@
     <span>{{ product?.title }}</span>
     <span>Quantity:</span>
     <span class="order__count">
-      <button mat-mini-fab color="accent" aria-label="list icon" (click)="deleteCountProduct()">
+      <button mat-mini-fab color="accent" aria-label="list icon" (click)="totalCountProduct(MINUS)">
         <mat-icon>exposure_neg_1</mat-icon>
       </button>
       <span>{{ product?.quantityCart }}</span>
-      <button mat-mini-fab color="accent" aria-label="list icon" (click)="addCountProduct()">
+      <button mat-mini-fab color="accent" aria-label="list icon" (click)="totalCountProduct(PLUS)">
         <mat-icon>plus_one</mat-icon>
       </button>
     </span>

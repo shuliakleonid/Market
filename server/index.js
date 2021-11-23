@@ -3,6 +3,7 @@ import cors from 'cors'
 import router from './routes/router.js'
 import authRouter from './routes/auth-router.js';
 import adminRouter from './routes/admin-router.js';
+import cartRouter from './routes/cart-router.js';
 import fileUpload from 'express-fileupload';
 import bodyParser from 'body-parser';
 
@@ -20,7 +21,7 @@ app.use('/api', router);
 app.use('/auth', authRouter);
 app.use('/admin', adminRouter);
 app.use('/product', express.static('upload'));
-
+app.use('/cart',cartRouter);
 
 async function startApp() {
   try {
