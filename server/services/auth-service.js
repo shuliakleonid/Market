@@ -36,4 +36,4 @@ class AuthService {
   }
 }
 
-export default new UserService();
+export default new AuthService();

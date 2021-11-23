@@ -25,7 +25,19 @@ class UserService {
     );
   }
 
-  deleteUser(id,result){
+  getUserId(token) {
+    return new Promise((res, rej) =>
+      db.query("SELECT id FROM user WHERE token = ?", [token], (err, rows) => {
+        if (err) {
+          rej(err);
+        } else {
+          res(rows[0]);
+        }
+      })
+    );
+  }
+
+  deleteUser(id, result) {
     db.query("DELETE FROM USER WHERE id = ?", [id], (err, rows) => {
       if (err) {
         result(null, err);

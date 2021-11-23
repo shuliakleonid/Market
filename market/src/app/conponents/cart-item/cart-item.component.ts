@@ -12,13 +12,16 @@ export class CartItemComponent {
   @Output()
   changeQuantity = new EventEmitter();
 
-  addCountProduct() {
-    this.product!.quantityCart += 1;
-    this.changeQuantity.emit(this.product);
-  }
+  MINUS = '-';
 
-  deleteCountProduct() {
-    this.product!.quantityCart -= 1;
+  PLUS = '+';
+
+  totalCountProduct(mark: string):void {
+    const data:{ [key: string]: () => number } = {
+      '-': () => this.product!.quantityCart -= 1,
+      '+': () => this.product!.quantityCart += 1,
+    };
+    data[mark]();
     this.changeQuantity.emit(this.product);
   }
 }
