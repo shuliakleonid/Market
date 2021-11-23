@@ -2,7 +2,7 @@ import { AfterContentChecked, Component, OnInit } from '@angular/core';
 import { ProductStoreService } from '../../services/store/product-store.service';
 import { Product } from '../../interfaces/product';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CartHttpService } from '../../services/cart-http.service';
+import { CartStoreService } from '../../services/store/cart-store.service';
 
 @Component({
   selector: 'app-cart',
@@ -23,7 +23,7 @@ export class CartComponent implements OnInit, AfterContentChecked {
   constructor(
     private readonly productService: ProductStoreService,
     private fb: FormBuilder,
-    private readonly cartService: CartHttpService,
+    private readonly cartStoreService: CartStoreService,
   ) {
     console.log(this.productService.cartProducts, 'Products');
   }
@@ -43,13 +43,10 @@ export class CartComponent implements OnInit, AfterContentChecked {
 
   onSubmit() {
     const totalPrice = this.subtotalPrice + this.delivery;
-    // console.log(this.deliveryReactiveForm.value, 'FORM');
-    // console.table(this.products);
-    // go on server
-    // this.cartService.sendCartProducts({ ...this.products, ...this.deliveryReactiveForm.value });
     const order = { products: [...this.products], user: this.deliveryReactiveForm.value, totalPrice };
     console.log(order, 'Product');
-    this.cartService.sendCartProducts(order);
+
+    this.cartStoreService.addProductToCard(order);
   }
 
   private initForm() {
