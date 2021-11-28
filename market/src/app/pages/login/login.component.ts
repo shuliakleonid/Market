@@ -20,8 +20,6 @@ export class LoginComponent implements OnInit {
     private readonly localstorageService: LocalstorageService,
   ) {}
 
-  user$ = this.authStoreService.activeUser$;
-
   ngOnInit(): void {
     this.initForm();
   }
