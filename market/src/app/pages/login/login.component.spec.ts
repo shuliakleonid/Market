@@ -1,8 +1,9 @@
 import { LoginComponent } from './login.component';
 import { FormBuilder, Validators } from '@angular/forms';
 import { LocalstorageService } from '../../services/localstorage.service';
-import { async, ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { AuthStoreService } from '../../services/store/auth-store.service';
 
 describe('Login component', () => {
   let store = {};
@@ -24,8 +25,8 @@ describe('Login component', () => {
       return store.token;
     },
   };
-  // let authService: AuthStoreService;
-  // const fakeAuthService = { singIn: (user: SignIn) => true };
+
+  let fakeAuthService = { singIn: jasmine.createSpy('singIn').and.returnValue(true) };
 
   const validUser = {
     userLogin: 'zeleny777@gmail.com',
@@ -42,7 +43,7 @@ describe('Login component', () => {
       providers: [
         LocalstorageService,
         FormBuilder,
-        // { provide: AuthStoreService, userSing: fakeAuthService }
+        { provide: AuthStoreService, useValue: fakeAuthService },
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
@@ -100,4 +101,11 @@ describe('Login component', () => {
     localStorageService.clearAccessToken();
     expect(localStorageService.getAccessToken()).toBeUndefined();
   });
+
+  it('should submit', fakeAsync(() => {
+    component.onSubmit();
+    expect(fakeAuthService.singIn()).toBeTruthy();
+    tick();
+    fixture.detectChanges();
+  }));
 });
