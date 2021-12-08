@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { LoadingIndicatorService } from './services/loading-indicator.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'Market';
+  readonly loading$: Observable<boolean> = this.loadingService.loading$;
+
+  constructor(private loadingService: LoadingIndicatorService) {}
 }

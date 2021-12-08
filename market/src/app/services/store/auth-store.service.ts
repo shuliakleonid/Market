@@ -31,7 +31,7 @@ export class AuthStoreService {
     this.userSubject$.next(user);
   }
 
-  singIn(signInModel: SignIn): void {
+  public singIn(signInModel: SignIn): void {
     this.authHttpService.signIn(signInModel).subscribe({
       next: (token) => {
         this.getUser(token);
