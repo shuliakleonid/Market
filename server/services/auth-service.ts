@@ -1,8 +1,10 @@
-import db from "../database/db.js";
+// @ts-ignore
+// eslint-disable-next-line import/extensions
+import db from '../database/db.ts';
 
 class AuthService {
   getAllUsers(result) {
-    return db.query("SELECT * FROM USER", (err, res) => {
+    return db.query('SELECT * FROM USER', (err, res) => {
       if (err) {
         result(null, err);
       } else {
@@ -13,7 +15,7 @@ class AuthService {
 
   getUser(id, result) {
     db.query(
-      "SELECT email,first_name,last_name,phone,birth_date FROM user WHERE token = ?",
+      'SELECT email,first_name,last_name,phone,birth_date FROM user WHERE token = ?',
       [id],
       (err, rows) => {
         if (err) {
@@ -21,18 +23,18 @@ class AuthService {
         } else {
           result(null, rows[0]);
         }
-      }
+      },
     );
   }
 
-  deleteUser(id,result){
-    db.query("DELETE FROM USER WHERE id = ?", [id], (err, rows) => {
+  deleteUser(id, result){
+    db.query('DELETE FROM USER WHERE id = ?', [id], (err, rows) => {
       if (err) {
         result(null, err);
       } else {
         result(null, rows);
       }
-    })
+    });
   }
 }
 

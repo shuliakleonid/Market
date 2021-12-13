@@ -1,14 +1,14 @@
 import mysql from 'mysql';
 import dotenv from 'dotenv';
 
-dotenv.config()
+dotenv.config();
 
 const db = mysql.createConnection({
   host: process.env.HOST,
   user: process.env.USERMYSQL,
   password: process.env.PASSWORD,
   database: process.env.DATABASE,
-  insecureAuth: true
+  insecureAuth: true,
 });
 
 db.connect((err) => {

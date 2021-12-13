@@ -25,12 +25,12 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
+    this.submitted = true;
     this.localstorageService.clearAccessToken();
     const { controls } = this.loginReactiveForm;
     if (this.loginReactiveForm.invalid) {
       Object.keys(controls).forEach((controlName) => controls[controlName].markAsTouched());
     }
-    this.submitted = false;
     this.authStoreService.singIn({
       email: this.loginReactiveForm.value.userLogin,
       password: this.loginReactiveForm.value.userPassword,
