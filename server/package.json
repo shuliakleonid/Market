@@ -7,7 +7,7 @@
     "start": "node index.ts",
     "dev": "nodemon index.ts",
     "test:unit": "jest --config=jest.config.ts",
-    "test": "jest",
+    "test": "jest --detectOpenHandles",
     "test:watch": "jest --watchAll"
   },
   "author": "l.shuliak",
@@ -31,9 +31,11 @@
     "log4js": "^6.3.0",
     "reflect-metadata": "^0.1.13",
     "routing-controllers": "^0.9.0-alpha.6",
-    "swagger-ui-express": "^4.1.6"
+    "pino": "^6.13.3",
+    "pino-pretty": "^7.0.1",
+    "dayjs": "^1.10.7"
   },
-  "devDependencies":{
+  "devDependencies": {
     "babel-jest": "^26.0.1",
     "bcryptjs": "^2.4.3",
     "dotenv": "^10.0.0",

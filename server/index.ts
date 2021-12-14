@@ -1,31 +1,13 @@
-import express from 'express';
-import cors from 'cors';
-import router from './routes/router';
-import authRouter from './routes/auth-router';
-import adminRouter from './routes/admin-router';
-import cartRouter from './routes/cart-router';
-import fileUpload from 'express-fileupload';
-import bodyParser from 'body-parser';
-
+import createServer from './utils/server';
+import logger from './utils/logger';
 
 const PORT = process.env.PORT || 5000;
-const app = express();
 
-app.use(cors({ origin: '*' }));
-app.use(fileUpload({}));
-app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-
-app.use('/api', router);
-app.use('/auth', authRouter);
-app.use('/admin', adminRouter);
-app.use('/product', express.static('upload'));
-app.use('/cart', cartRouter);
+const app = createServer();
 
 async function startApp() {
   try {
-    app.listen(PORT, () => console.log('Server started on ' + PORT));
+    app.listen(PORT, async () => logger.info(`App is running at http://localhost:${PORT}`));
   } catch (e) {
     console.log(e);
   }

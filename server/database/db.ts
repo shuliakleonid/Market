@@ -1,20 +1,13 @@
-import mysql from 'mysql';
-import dotenv from 'dotenv';
 
-dotenv.config();
+import dbServer from '../utils/dbServer';
+import logger from '../utils/logger';
 
-const db = mysql.createConnection({
-  host: process.env.HOST,
-  user: process.env.USERMYSQL,
-  password: process.env.PASSWORD,
-  database: process.env.DATABASE,
-  insecureAuth: true,
-});
+const db = dbServer();
 
-db.connect((err) => {
-  if (!err)
-    console.log('DB connection succeded.');
-  else
+db.connect(async (err) => {
+  if (!err) {
+    logger.info('DB connection succeeded.');
+  } else
     console.log('DB connection failed \n Error : ' + JSON.stringify(err, undefined, 2));
 });
 
