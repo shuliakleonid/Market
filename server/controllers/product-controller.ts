@@ -1,15 +1,21 @@
-import { fileURLToPath } from "url";
-import { dirname } from "path";
-import ProductService from "../services/product-service.js";
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+// @ts-ignore
+// eslint-disable-next-line import/extensions
+import ProductService from '../services/product-service.ts';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename.replace("controllers", "upload\\"));
+// @ts-ignore
+// eslint-disable-next-line @typescript-eslint/naming-convention
+// const __filename = fileURLToPath('/server/upload');
+// const __filename = fileURLToPath(import.meta.url);
+// eslint-disable-next-line @typescript-eslint/naming-convention
+const __dirname = dirname(__filename.replace('controllers', 'upload\\'));
 
 class ProductController {
   async createProduct(req, res) {
     try {
       if (!req.files || Object.keys(req.files).length === 0) {
-        res.status(400).json("No files were uploaded.");
+        res.status(400).json('No files were uploaded.');
       }
       const { image } = req.files;
       const uploadPath = __dirname + image.name;
@@ -24,14 +30,14 @@ class ProductController {
             if (err) {
               res.status(400).json({ message: err });
             } else {
-              res.json({ message: "Product is add" });
+              res.json({ message: 'Product is add' });
             }
-          }
+          },
         );
       });
     } catch (e) {
       console.log(e);
-      res.status(400).json({ message: "Item is not added" });
+      res.status(400).json({ message: 'Item is not added' });
     }
   }
 
@@ -46,7 +52,7 @@ class ProductController {
       });
     } catch (e) {
       console.log(e);
-      res.status(400).json({ message: "Something went wrong" });
+      res.status(400).json({ message: 'Something went wrong' });
     }
   }
 
@@ -54,7 +60,7 @@ class ProductController {
     try {
       const id = req.params.id;
       if (!id) {
-        throw new Error("Id not indicated");
+        throw new Error('Id not indicated');
       }
       await ProductService.getProduct(id, (err, rows) => {
         if (err) {
@@ -65,7 +71,7 @@ class ProductController {
       });
     } catch (e) {
       console.log(e);
-      res.status(400).json({ message: "Something went wrong" });
+      res.status(400).json({ message: 'Something went wrong' });
     }
   }
 
@@ -73,7 +79,7 @@ class ProductController {
     try {
       const id = req.params.id;
       if (!id) {
-        throw new Error("Id not indicated");
+        throw new Error('Id not indicated');
       }
       if (id) {
         await ProductService.deleteProduct(id, (err, rows) => {
@@ -86,7 +92,7 @@ class ProductController {
       }
     } catch (e) {
       console.log(e);
-      res.status(400).json({ message: "Something went wrong" });
+      res.status(400).json({ message: 'Something went wrong' });
     }
   }
 
@@ -94,7 +100,7 @@ class ProductController {
     try {
       const id = req.params.id;
       if (!id) {
-        throw new Error("Id not indicated");
+        throw new Error('Id not indicated');
       }
       if (req.files) {
         const { image } = req.files;
@@ -112,7 +118,7 @@ class ProductController {
               if (err) {
                 res.json(err);
               }
-            }
+            },
           );
         });
       } else {
@@ -124,7 +130,7 @@ class ProductController {
             if (err) {
               res.json(err);
             }
-          }
+          },
         );
       }
       await ProductService.getProduct(id, (err, rows) => {
@@ -136,7 +142,7 @@ class ProductController {
       });
     } catch (e) {
       console.log(e);
-      res.status(400).json({ message: "Product is not updated" });
+      res.status(400).json({ message: 'Product is not updated' });
     }
   }
 }

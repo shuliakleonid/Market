@@ -1,8 +1,10 @@
-import db from "../database/db.js";
+// @ts-ignore
+// eslint-disable-next-line import/extensions
+import db from '../database/db.ts';
 
 class UserService {
   getAllUsers(result) {
-    return db.query("SELECT * FROM USER", (err, res) => {
+    return db.query('SELECT * FROM USER', (err, res) => {
       if (err) {
         result(null, err);
       } else {
@@ -13,7 +15,7 @@ class UserService {
 
   getUser(id, result) {
     db.query(
-      "SELECT email,first_name,last_name,phone,birth_date,role FROM user WHERE token = ?",
+      'SELECT email,first_name,last_name,phone,birth_date,role FROM user WHERE token = ?',
       [id],
       (err, rows) => {
         if (err) {
@@ -21,30 +23,30 @@ class UserService {
         } else {
           result(null, rows[0]);
         }
-      }
+      },
     );
   }
 
   getUserId(token) {
     return new Promise((res, rej) =>
-      db.query("SELECT id FROM user WHERE token = ?", [token], (err, rows) => {
+      db.query('SELECT id FROM user WHERE token = ?', [token], (err, rows) => {
         if (err) {
           rej(err);
         } else {
           res(rows[0]);
         }
-      })
+      }),
     );
   }
 
   deleteUser(id, result) {
-    db.query("DELETE FROM USER WHERE id = ?", [id], (err, rows) => {
+    db.query('DELETE FROM USER WHERE id = ?', [id], (err, rows) => {
       if (err) {
         result(null, err);
       } else {
         result(null, rows);
       }
-    })
+    });
   }
 }
 
