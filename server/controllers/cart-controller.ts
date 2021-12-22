@@ -17,14 +17,21 @@ class CartController {
       const { id } = await UserService.getUserId(token);
       await OrderService.setUserInfo(req.body.user, id);
 
-      const addressIdUser = OrderService.getIdAddressUser(id);
+      const addressIdUser = await OrderService.getIdAddressUser(id);
 
       for (const product in products) {
+        console.table({
+          product:products[product].id,
+          id:id,
+          productQuantity:products[product].quantityCart,
+          address:addressIdUser[0].id,
+          price:totalPrice,
+        });
         await OrderService.setOrder(
           products[product].id,
           id,
           products[product].quantityCart,
-          addressIdUser[0],
+          addressIdUser[0].id,
           totalPrice,
         );
       }

@@ -35,9 +35,9 @@ class OrderService {
     );
   }
 
-  async setOrder(productId, id, productQuantity, userAddress, totalPrice){
+  async setOrder(productId, id, productQuantity, userAddress = 3, totalPrice){
     return new Promise((res, rej)=>db.query(
-      'INSERT INTO order_product (id_product,id_user,quantity,id_user_inform,total_price) VALUE(?,?,?,?,?)',
+      'INSERT INTO order_product (id_product,id_user,quantity,id_user_inform,total_price) VALUES (?,?,?,?,?)',
       [productId, id, productQuantity, userAddress, totalPrice],
       (err, rows) => {
         if (err) {

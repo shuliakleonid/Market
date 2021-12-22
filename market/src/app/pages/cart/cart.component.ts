@@ -45,8 +45,8 @@ export class CartComponent implements OnInit, AfterContentChecked {
     const totalPrice = this.subtotalPrice + this.delivery;
     const order = { products: [...this.products], user: this.deliveryReactiveForm.value, totalPrice };
     console.log(order, 'Product');
-
     this.cartStoreService.addProductToCard(order);
+    //todo clear fields when order is send
   }
 
   private initForm() {
