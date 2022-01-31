@@ -26,20 +26,25 @@ export class LoginGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (state.url === Route.loginWithSlash) return true;
+    // if (state.url === Route.loginWithSlash) return true;
 
     const token = this.localstorageService.getAccessToken();
     if (token !== null) {
       this.authStoreService.getUser({ token: token });
-    }
-    this.router.navigate([Route.login]);
-
-    const isAdmin = this.authStoreService.user?.role === UserRole.admin;
-    if (!isAdmin) {
-      this.router.navigate([Route.profile]);
+      return false;
+    } else {
       return true;
     }
-    this.router.navigate([Route.admin + AdminRoute.dashboard]);
-    return true;
+
+    //
+    //   const isAdmin = this.authStoreService.user?.role === UserRole.admin;
+    //   if (!isAdmin) {
+    //     this.router.navigate([Route.profile]);
+    //     return true;
+    //   }
+    //   this.router.navigate([Route.admin + AdminRoute.dashboard]);
+    //   return true;
+    // }
+
   }
 }

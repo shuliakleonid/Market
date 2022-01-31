@@ -3,7 +3,7 @@ import { AuthHttpService } from '../auth-http.service';
 import { SignIn, SingUp, Token, User } from '../../interfaces/user.interfaces';
 import { BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
-import { Route } from '../../constants/route-constant';
+import { AdminRoute, Route } from '../../constants/route-constant';
 import { LocalstorageService } from '../localstorage.service';
 import { map } from 'rxjs/operators';
 
@@ -48,11 +48,22 @@ export class AuthStoreService {
   getUser(token: Token) {
     this.authHttpService.getUser(token).subscribe({
       next: (user) => {
-        console.log(user);
         this.user = { ...user };
+        console.log(user, 'USER');
         if (user) {
           this.router.navigate([Route.catalog]);
         }
+        if (user.role === 'admin') {
+          this.router.navigate([Route.admin + AdminRoute.dashboard]);
+        }
+      },
+    });
+  }
+
+  refreshUser(token: Token){
+    this.authHttpService.getUser(token).subscribe({
+      next: (user) => {
+        this.user = { ...user };
       },
     });
   }

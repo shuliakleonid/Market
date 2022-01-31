@@ -56,5 +56,12 @@
     "strictInputAccessModifiers": true,
     "strictTemplates": true,
     "fullTemplateTypeCheck": true,
+    "extendedDiagnostics": {
+      "checks": {
+        "invalidBananaInBox": "warning",
+        "nullishCoalescingNotNullable": "suppress"
+      },
+      "defaultCategory": "error"
+    }
   }
 }
